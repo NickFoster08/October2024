@@ -26,5 +26,5 @@ module load NCBI-Datasets-CLI/16.4.4
 cd $OUTDIR
 
 #download datasets and unzip
-datasets download genome acension GCF_000195955.2n --include cds,genome
+datasets download genome accession GCF_000195955.2n --include cds,genome
 unzip ncbi_dowload.zip
