@@ -26,4 +26,10 @@ cd $OUTDIR
 
 #Download datasets and unzip
 datasets download genome accession GCF_000195955.2 --include cds,genome
+# Check if the zip file exists before unzipping
+if [ -f ncbi_dataset.zip ]; then
+    unzip ncbi_dataset.zip
+else
+    echo "Error: ncbi_dataset.zip not found."
+fi
 unzip ncbi_download.zip
