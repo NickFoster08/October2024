@@ -32,4 +32,4 @@ if [ -f ncbi_dataset.zip ]; then
 else
     echo "Error: ncbi_dataset.zip not found."
 fi
-unzip ncbi_download.zip
+unzip ncbi_dataset.zip
