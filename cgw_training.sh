@@ -11,7 +11,7 @@
 #SBATCH --mail-user=nf26742@uga.edu  # Where to send mail	
 
 #set output directory variable
-OUTDIR="/scratch/nf26742/ref"
+OUTDIR="/scratch/nf26742/workdir"
 
 #Tells the program to make the ourdir folder if it cant find it
 if [ ! -d $OUTDIR ] 
