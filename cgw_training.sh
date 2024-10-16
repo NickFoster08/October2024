@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=Training         # Job name
+#SBATCH --job-name=NCBI        # Job name
 #SBATCH --partition=batch             # Partition (queue) name
 #SBATCH --ntasks=1                    # Run on a single CPU
 #SBATCH --mem=1gb                     # Job memory request
@@ -8,7 +8,7 @@
 #SBATCH --error=/scratch/nf26742/scratch/log.%j.err             # Standard error log
 
 #SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
-#SBATCH --mail-user=yourMyID@uga.edu  # Where to send mail	
+#SBATCH --mail-user=nf26742@uga.edu  # Where to send mail	
 
 #set output directory variable
 OUTDIR="/scratch/nf26742/ref"
@@ -26,5 +26,6 @@ module load NCBI-Datasets-CLI/16.4.4
 cd $OUTDIR
 
 #download datasets and unzip
-datasets download genome accession GCF_000195955.2n --include cds,genome
-unzip ncbi_dowload.zip
+datasets download genome accession GCF_000195955.2 --include cds,genome
+unzip ncbi_download.zip
+#test
