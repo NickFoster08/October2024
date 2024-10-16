@@ -11,7 +11,7 @@
 #SBATCH --mail-user=nf26742@uga.edu  # Where to send mail	
 
 #set output directory variable
-OUTDIR="/home/nf26742/October2024/ncbioutput"
+OUTDIR="/scratch/nf26742/ref"
 
 #Tells the program to make the ourdir folder if it cant find it
 if [ ! -d $OUTDIR ] 
@@ -29,3 +29,4 @@ cd $OUTDIR
 datasets download genome accession GCF_000195955.2 --include cds,genome
 unzip ncbi_download.zip
 #test
+#test2
