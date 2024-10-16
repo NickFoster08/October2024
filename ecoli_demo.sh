@@ -24,5 +24,4 @@ fi
 ###Grab annotated genome file from the URL variable and then unzip it and put it in a file called ecoli_MG1655.gff
 curl -s $URL | gunzip -c > $OUTDIR/ecoli_MG1655.gff
 #count number of CDS features
-grep -c "CDS" $OUTDIR/ecoliMG1655.gff > $OUTDIR/results.txt
-#test
+grep -c "CDS" $OUTDIR/ecoli_MG1655.gff > $OUTDIR/results.txt
