@@ -25,3 +25,4 @@ fi
 curl -s $URL | gunzip -c > $OUTDIR/ecoli_MG1655.gff
 #count number of CDS features
 grep -c "CDS" $OUTDIR/ecoliMG1655.gff > $OUTDIR/results.txt
+#test
