@@ -11,7 +11,7 @@
 #SBATCH --mail-user=nf26742@uga.edu  # Where to send mail (change username@uga.edu to your email address)
 
 #set output directory variable
-OUTDIR="scratch/nf26742/bactopia_tutorial"
+OUTDIR="/scratch/nf26742/bactopia_tutorial"
 
 #Tells the program to make the ourdir folder if it cant find it
 if [ ! -d $OUTDIR ] 
