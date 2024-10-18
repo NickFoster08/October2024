@@ -28,6 +28,4 @@ cd $OUTDIR
 
 #bactopia run bioproject
 bactopia \
-    --fastq "/home/nf26742/BovMor1/MbovisRawFASTQ/"
-    --outdir $OUTDIR/bactopia_output_1 \
-    --max_cpus 8
+    --fastq "/home/nf26742/BovMor1/MbovisRawFASTQ/" --outdir "$OUTDIR/bactopia_output_1" \  --max_cpus 8
