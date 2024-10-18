@@ -27,9 +27,10 @@ module load Bactopia/3.1.0
 #move to working directory
 cd $OUTDIR
 
-#Prepare file of file names
+# Prepare file of file names
 bactopia prepare \
-    --path $OUTIDR/fastqs \
+    --path /home/nf26742/fastqs \
     --species "Staphylococcus aureus" \
     --genome-size 2800000 \
     > $OUTDIR/samples.txt
+# test
