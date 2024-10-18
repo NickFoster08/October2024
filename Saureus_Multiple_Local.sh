@@ -30,6 +30,6 @@ cd $OUTDIR
 #Prepare file of file names
 bactopia prepare \
     --path $OUTIDR/fastqs \
-    --species"Staphylococcus aureus" \
+    --species "Staphylococcus aureus" \
     --genome-size 2800000 \
     > $OUTDIR/samples.txt
