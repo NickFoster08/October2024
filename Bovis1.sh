@@ -26,9 +26,6 @@ module load Bactopia/3.1.0
 # Move to working directory
 cd $OUTDIR
 
-# Create datasets (if needed)
-bactopia datasets --query $FASTQ_DIR
-
 # Run Bactopia with local FASTQ files
 bactopia \
     --fastqs $FASTQ_DIR \
