@@ -14,6 +14,12 @@
 #set output directory variable
 OUTDIR="/scratch/nf26742/PRJNA1056148_bactopia"
 
+#Tells the program to make the ourdir folder if it cant find it
+if [ ! -d $OUTDIR ] 
+then
+    mkdir -p $OUTDIR
+fi
+
 #Load modules
 module load Bactopia/3.1.0
 
@@ -21,8 +27,9 @@ module load Bactopia/3.1.0
 cd $OUTDIR
 
 #create accessions file of file name document
-bactopia \
+bactopia search\
     --query PRJNA1056148
+
 #Bactopia tutorial to run a bioproject
 bactopia \
     --accessions $OUTDIR/bactopia-accessions.txt \
