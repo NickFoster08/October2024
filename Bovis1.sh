@@ -32,8 +32,8 @@ bactopia prepare \
     --fastq-ext "fastq" \
     --species "Mycobacterium bovis" \
     --genome-size 2800000 \
-    --outdir $OUTDIR
-    
+    > $OUTDIR/samples.txt
+
 # Move to output directory 
 cd $OUTDIR
 
