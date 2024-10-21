@@ -27,7 +27,7 @@ module load Bactopia/3.1.0
 cd $OUTDIR
 
 #create accessions file of file name document
-bactopia search \
+bactopia search\
     --query PRJNA1056148
 
 #Bactopia tutorial to run a bioproject
