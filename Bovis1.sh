@@ -28,13 +28,14 @@ module load Bactopia/3.1.0
 cd $FASTQ_DIR
 
 # Prepare FOFNs and generate the sample list
+# Prepare FOFNs and generate the sample list
 bactopia prepare \
     --path $OUTDIR/fastqs \
     --fastq-ext "fastq" \
     --species "Mycobacterium bovis" \
     --genome-size 2800000 \
-    --pe1-pattern "_R1|_R1_unaligned|_R1_001" \
-    --pe2-pattern "_R2|_R2_unaligned|_R2_001" \
+    --pe1-pattern "_R1_unaligned|_R1|_R1_001|_unmapped_R1" \
+    --pe2-pattern "_R2_unaligned|_R2|_R2_001|_unmapped_R2" \
     > $OUTDIR/samples.txt
 
 # Move to output directory 
