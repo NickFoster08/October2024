@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=Bioproject-PRJNA480016         # Job name
+#SBATCH --job-name-Ethiopia_Bioproject        # Job name
 #SBATCH --partition=batch             # Partition (queue) name
 #SBATCH --ntasks=1                    # Run on a single CPU
 #SBATCH --cpus-per-task=8             #number of cores per task
 #SBATCH --mem=40gb                     # Job memory request
-#SBATCH --time=05:00:00               # Time limit hrs:min:sec
+#SBATCH --time=02-00:00:00               # Time limit hrs:min:sec
 #SBATCH --output=/scratch/nf26742/scratch/log.%j.out    # Standard output log
 #SBATCH --error=/scratch/nf26742/scratch/log.%j.err     # Standard error log
 
@@ -15,7 +15,7 @@
 OUTDIR="/scratch/nf26742/PRJNA1056148_bactopia"
 
 #Load modules
-module load Bactopia/3.0.1
+module load Bactopia/3.1.0
 
 #move to working directory
 cd $OUTDIR
