@@ -29,6 +29,7 @@ cd $FASTQ_DIR
 
 # Prepare FOFNs and generate the sample list
 bactopia prepare \
+    --path $OUTDIR/fastqs \
     --fastq-ext "fastq" \
     --species "Mycobacterium bovis" \
     --genome-size 2800000 \
