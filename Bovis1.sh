@@ -33,6 +33,8 @@ bactopia prepare \
     --fastq-ext "fastq" \
     --species "Mycobacterium bovis" \
     --genome-size 2800000 \
+    --pe1-pattern "_R1|_R1_unaligned|_R1_001" \
+    --pe2-pattern "_R2|_R2_unaligned|_R2_001" \
     > $OUTDIR/samples.txt
 
 # Move to output directory 
@@ -42,11 +44,11 @@ cd $OUTDIR
 if [ -f "$SAMPLE_LIST" ]; then
     # Run Bactopia with the sample list
     bactopia \
-        --samples $SAMPLE_LIST \
+        --samples $OUTDIR/samples.txt \
         --coverage 100 \
         --outdir $OUTDIR/bactopia_MorBov_run \
         --max_cpus 8
 else
-    echo "Error: $SAMPLE_LIST not found. Please check the prepare step."
+    echo "Error: $OUTDIR/samples.txt not found. Please check the prepare step."
     exit 1
 fi
