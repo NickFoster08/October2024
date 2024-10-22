@@ -22,7 +22,7 @@ then
 fi
 
 #load modules
-module load Bactopia/3.0.1
+module load Bactopia/3.1.0
 
 #move to working directory
 cd $OUTDIR
