@@ -2,9 +2,9 @@
 #SBATCH --job-name=Bioproject-PRJNA480016         # Job name
 #SBATCH --partition=batch             # Partition (queue) name
 #SBATCH --ntasks=1                    # Run on a single CPU
-#SBATCH --cpus-per-task=8             #number of cores per task
+#SBATCH --cpus-per-task=4             #number of cores per task
 #SBATCH --mem=40gb                     # Job memory request
-#SBATCH --time=05:00:00               # Time limit hrs:min:sec
+#SBATCH --time=02-00:00:00               # Time limit hrs:min:sec
 #SBATCH --output=/scratch/nf26742/scratch/log.%j.out    # Standard output log
 #SBATCH --error=/scratch/nf26742/scratch/log.%j.err     # Standard error log
 
@@ -31,4 +31,4 @@ bactopia \
     --accessions $OUTDIR/bactopia-accessions.txt \
     --coverage 100 \
     --outdir $OUTDIR/ena-multiple-samples \
-    --max_cpus 8
+    --max_cpus 4
