@@ -28,5 +28,4 @@ module load Bactopia/3.0.1
 cd $OUTDIR
 
 #create summary files from bactopia pipeline on Ethiopian samples
-bactopia summary \
-    --bactopia-path $OUTDIR/
+bactopia summary --bactopia-path $OUTDIR/
