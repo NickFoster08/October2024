@@ -12,7 +12,7 @@
 #SBATCH --mail-user=nf26742@uga.edu             # Where to send mail
 #set output directory variable
 
-OUTDIR="/scratch/nf26742/PRJNA1056148_bactopia"
+OUTDIR="/scratch/nf26742/PRJNA1056148_bactopia/ena-multiple-samples"
 
 #tells program to make outdir if it cant find it
 #Tells the program to make the ourdir folder if it cant find it
@@ -22,10 +22,11 @@ then
 fi
 
 #load modules
-module load Bactopia/3.1.0
+module load Bactopia/3.0.1
 
 #move to working directory
 cd $OUTDIR
 
 #create summary files from bactopia pipeline on Ethiopian samples
-bactopia summary --bactopia-path $OUTDIR/ena-multiple-samples/
+bactopia summary \
+    --bactopia-path $OUTDIR/
