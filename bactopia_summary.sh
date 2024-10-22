@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=Mor_Bovis_Bioproject        # Job name
+#SBATCH --job-name=Bactopia summary        # Job name
 #SBATCH --partition=batch                       # Partition (queue) name
 #SBATCH --ntasks=1                              # Run on a single CPU
-#SBATCH --cpus-per-task=8                       # Number of cores per task
+#SBATCH --cpus-per-task=2                       # Number of cores per task
 #SBATCH --mem=40gb                              # Job memory request
-#SBATCH --time=02-00:00:00                      # Time limit hrs:min:sec
+#SBATCH --time=00-01:00:00                      # Time limit hrs:min:sec
 #SBATCH --output=/scratch/nf26742/scratch/log.%j.out  # Standard output log
 #SBATCH --error=/scratch/nf26742/scratch/log.%j.err   # Standard error log
 
