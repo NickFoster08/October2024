@@ -12,32 +12,35 @@
 #SBATCH --mail-user=nf26742@uga.edu            # Where to send mail
 
 # Set output directory variable
-OUTDIR=/scratch/nf26742/BovMor1/fastqs
+OUTDIR="/scratch/nf26742/BovMor1/fastqs" 
+###Nick I recommend moving your fastqs to scratch due to the 200GB memory limit in home.
+### You will create a ton of data running this pipeline and use up your 200GB quickly. 
 
 # Create the output directory if it doesn't exist
 if [ ! -d $OUTDIR ]; then
-    mkdir -p $OUTDIR
+   mkdir -p $OUTDIR
 fi
 
 # Load Bactopia
 module load Bactopia/3.1.0
-    bactopia prepare \
-        --path /scratch/nf26742/BovMor1/fastqs \
-        --fastq-ext ".fastq.gz" \
-        --species "Mycobacterium bovis" \
-        --genome-size 2800000 \
-        --pe1-pattern "_L001_R1.fastq.gz" \
-        --pe2-pattern "_L001_R2.fastq.gz"
-
 
 # Move to the output directory
 cd $OUTDIR
 
+# Tell Bactopia to prepare samples and generate FOFN named mbovis_samples.txt
+bactopia prepare \
+   --path $OUTDIR \
+   --species "Mycobacterium bovis" \
+   --genome-size 4400000 \
+   > mbovis_sample.txt
+
 # Invoke Bactopia using the generated FOFN
 bactopia \
-    --samples $OUTDIR/samples.fofn \
-    --outdir $OUTDIR/ \
-    --max_cpus 4
+   --samples $OUTDIR/mbovis_samples.txt \
+   --coverage 100 \
+   --max_cpus 4 \
+   --outdir $OUTDIR/paired_end_samples
 
 # Prepare summary file
-bactopia summary --bactopia-path $OUTDIR
+bactopia summary \
+   --bactopia-path $OUTDIR/paired_end_samples
