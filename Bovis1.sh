@@ -29,14 +29,7 @@ bactopia prepare \
     --genome-size 2800000 \
     --pe1-pattern "_R1_001" \
     --pe2-pattern "_R2_001"
-
-# Check if the FOFN was generated successfully
-FOFN="$OUTDIR/samples.fofn"
-if [ ! -f "$FOFN" ]; then
-    echo "Error: FOFN file not found: $FOFN"
-    exit 1
-fi
-
+    
 # Move to the output directory
 cd "$OUTDIR" || exit
 
