@@ -27,6 +27,7 @@ module load Bactopia/3.1.0
 cd $OUTDIR
 
 #create accessions file of file name document
-bactopia prepare \
- --path /home/nf26742/BovMor1/fastqs --ont
- 
+# Create accessions file of file name document
+bactopia prepare --path $OUTDIR --ont \
+  --pe1-pattern ".*_R1_.*" \
+  --pe2-pattern ".*_R2_.*"
