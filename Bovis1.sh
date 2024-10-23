@@ -36,7 +36,7 @@ cd $OUTDIR
 
 # Invoke Bactopia using the generated FOFN
 bactopia \
-    --fastqs $OUTDIR/samples.fofn \
+    --samples $OUTDIR/samples.fofn \
     --outdir $OUTDIR/ \
     --max_cpus 4
 
