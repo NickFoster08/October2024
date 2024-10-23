@@ -22,15 +22,15 @@ fi
 # Load Bactopia
 module load Bactopia/3.1.0
 
-# Tell Bactopia to prepare samples and generate FOFN if not already done
+# Generate FOFN if not already done
 if [ ! -f $OUTDIR/samples.fofn ]; then
     bactopia prepare \
         --path /home/nf26742/BovMor1/fastqs \
         --fastq-ext ".fastq.gz" \
         --species "Mycobacterium bovis" \
         --genome-size 2800000 \
-        --pe1-pattern "_R1_001" \
-        --pe2-pattern "_R2_001"
+        --pe1-pattern "_R1_001.fastq.gz" \
+        --pe2-pattern "_R2_001.fastq.gz"
 fi
 
 # Move to the output directory
