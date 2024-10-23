@@ -12,7 +12,7 @@
 #SBATCH --mail-user=nf26742@uga.edu            # Where to send mail
 
 # Set output directory variable
-OUTDIR=/home/nf26742/BovMor1/Bactopia_Output
+OUTDIR=/home/nf26742/BovMor1/fastqs 
 
 # Create the output directory if it doesn't exist
 if [ ! -d $OUTDIR ]; then
@@ -42,5 +42,3 @@ bactopia \
 
 # Prepare summary file
 bactopia summary --bactopia-path $OUTDIR
-
-#test
