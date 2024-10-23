@@ -27,8 +27,7 @@ bactopia prepare \
     --path /home/nf26742/BovMor1/fastqs \
     --fastq-ext ".fastq" \
     --species "Mycobacterium bovis" \
-    --genome-size 2800000 \
-    --outdir $OUTDIR
+    --genome-size 2800000 
 
 # Move to the output directory
 cd $OUTDIR
