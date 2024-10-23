@@ -29,3 +29,4 @@ cd $OUTDIR
 #create accessions file of file name document
 bactopia prepare \
  --path /home/nf26742/BovMor1/fastqs --ont
+ 
