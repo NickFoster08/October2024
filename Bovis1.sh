@@ -12,7 +12,7 @@
 #SBATCH --mail-user=nf26742@uga.edu            # Where to send mail
 
 # Set output directory variable
-OUTDIR=/home/nf26742/BovMor1/fastqs 
+OUTDIR=/home/nf26742/BovMor1/Bactopia_Output
 
 # Create the output directory if it doesn't exist
 if [ ! -d $OUTDIR ]; then
@@ -22,14 +22,16 @@ fi
 # Load Bactopia
 module load Bactopia/3.1.0
 
-# Tell Bactopia to prepare samples and generate FOFN
-bactopia prepare \
-    --path /home/nf26742/BovMor1 \
-    --fastq-ext ".fastq.gz" \
-    --species "Mycobacterium bovis" \
-    --genome-size 2800000 \
-    --pe1-pattern "l001_R1_001" \
-    --pe2-pattern "L001_R2_001"
+# Tell Bactopia to prepare samples and generate FOFN if not already done
+if [ ! -f $OUTDIR/samples.fofn ]; then
+    bactopia prepare \
+        --path /home/nf26742/BovMor1/fastqs \
+        --fastq-ext ".fastq.gz" \
+        --species "Mycobacterium bovis" \
+        --genome-size 2800000 \
+        --pe1-pattern "_R1_001" \
+        --pe2-pattern "_R2_001"
+fi
 
 # Move to the output directory
 cd $OUTDIR
