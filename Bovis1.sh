@@ -28,8 +28,8 @@ bactopia prepare \
     --fastq-ext ".fastq.gz" \
     --species "Mycobacterium bovis" \
     --genome-size 2800000 \
-    --pe1-pattern "_R1_" \
-    --pe2-pattern "_R2_"
+    --pe1-pattern "_R1_001" \
+    --pe2-pattern "_R2_001"
 
 # Move to the output directory
 cd $OUTDIR
