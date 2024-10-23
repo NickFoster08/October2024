@@ -25,7 +25,7 @@ module load Bactopia/3.1.0
 # Tell Bactopia to prepare samples and generate FOFN
 bactopia prepare \
     --path /home/nf26742/BovMor1/fastqs \
-    --fastq-ext ".fastq" \
+    --fastq-ext ".fastq.gz" \
     --species "Mycobacterium bovis" \
     --genome-size 2800000 
 
