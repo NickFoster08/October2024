@@ -12,22 +12,33 @@
 #SBATCH --mail-user=nf26742@uga.edu            # Where to send mail
 
 # Set output directory variable
-OUTDIR="/home/nf26742/BovMor1/fastqs"
+OUTDIR=/home/nf26742/BovMor1/fastqs 
 
-#Tells the program to make the outdir folder if it cant find it
-if [ ! -d $OUTDIR ] 
-then
+# Create the output directory if it doesn't exist
+if [ ! -d $OUTDIR ]; then
     mkdir -p $OUTDIR
 fi
 
-#Load modules
+# Load Bactopia
 module load Bactopia/3.1.0
 
-#move to working directory
+# Tell Bactopia to prepare samples and generate FOFN
+bactopia prepare \
+    --path /home/nf26742/BovMor1/fastqs \
+    --fastq-ext ".fastq.gz" \
+    --species "Mycobacterium bovis" \
+    --genome-size 2800000 \
+    --pe1-pattern "l001_R1_001" \
+    --pe2-pattern "L001_R2_001"
+
+# Move to the output directory
 cd $OUTDIR
 
-#create accessions file of file name document
-# Create accessions file of file name document
-bactopia prepare --path $OUTDIR --ont \
-  --pe1-pattern ".*_R1_.*" \
-  --pe2-pattern ".*_R2_.*"
+# Invoke Bactopia using the generated FOFN
+bactopia \
+    --fastqs $OUTDIR/samples.fofn \
+    --outdir $OUTDIR/ \
+    --max_cpus 4
+
+# Prepare summary file
+bactopia summary --bactopia-path $OUTDIR
