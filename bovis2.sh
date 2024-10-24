@@ -32,6 +32,8 @@ bactopia prepare \
    --path $OUTDIR \
    --species "Mycobacterium bovis" \
    --genome-size 4400000 \
+   --pe-1 "_R1_001.fastq.gz" \
+   --pe-2 "_R2_001.fastq.gz" \
    > mbovis_sample.txt
 
 # Invoke Bactopia using the generated FOFN
