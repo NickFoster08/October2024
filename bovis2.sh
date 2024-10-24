@@ -12,7 +12,7 @@
 #SBATCH --mail-user=nf26742@uga.edu            # Where to send mail
 
 # Set output directory variable
-OUTDIR="/scratch/nf26742/BovMor1/fastqs" 
+OUTDIR="/scratch/nf26742/BovMor1" 
 ###Nick I recommend moving your fastqs to scratch due to the 200GB memory limit in home.
 ### You will create a ton of data running this pipeline and use up your 200GB quickly. 
 
@@ -40,8 +40,8 @@ bactopia \
    --samples $OUTDIR/mbovis_samples.txt \
    --coverage 100 \
    --max_cpus 4 \
-   --outdir $OUTDIR/scratch/nf26742/BovMor1/fastqs
+   --outdir $OUTDIR
 
 # Prepare summary file
 bactopia summary \
-   --bactopia-path $OUTDIR/scratch/nf26742/BovMor1/fastqs
+   --bactopia-path $OUTDIR
