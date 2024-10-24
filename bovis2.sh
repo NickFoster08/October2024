@@ -40,8 +40,8 @@ bactopia \
    --samples $OUTDIR/mbovis_samples.txt \
    --coverage 100 \
    --max_cpus 4 \
-   --outdir $OUTDIR/paired_end_samples
+   --outdir $OUTDIR/scratch/nf26742/BovMor1/fastqs
 
 # Prepare summary file
 bactopia summary \
-   --bactopia-path $OUTDIR/paired_end_samples
+   --bactopia-path $OUTDIR/scratch/nf26742/BovMor1/fastqs
