@@ -39,7 +39,7 @@ bactopia prepare \
 
 # Invoke Bactopia using the generated FOFN
 bactopia \
-   --samples $OUTDIR/scratch/nf26742/BovMor1/mbovis_samples.txt \
+   --samples /scratch/nf26742/BovMor1/mbovis_samples.txt \
    --coverage 100 \
    --max_cpus 4 \
    --outdir $OUTDIR
