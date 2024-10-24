@@ -29,7 +29,7 @@ cd $OUTDIR
 
 # Tell Bactopia to prepare samples and generate FOFN named mbovis_samples.txt
 bactopia prepare \
-    --path /scratch/nf26742/BovMor1/fastq \
+    --path scratch/nf26742/BovMor1/fastqs \
     --fastq-ext 'fastq.gz' \
     --pe1-pattern 'L001_R1' \
     --pe2-pattern 'L001_R2' \
