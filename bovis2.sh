@@ -1,15 +1,15 @@
 #!/bin/bash
-#SBATCH --job-name=Bovis_Project_Morrocco        # Job name
-#SBATCH --partition=batch                      # Partition (queue) name
-#SBATCH --ntasks=1                             # Run on a single CPU
-#SBATCH --cpus-per-task=4                      # Number of cores per task
-#SBATCH --mem=40gb                             # Job memory request
-#SBATCH --time=02-00:00:00                     # Time limit hrs:min:sec
+#SBATCH --job-name=Bovis_Project_Morocco         # Job name
+#SBATCH --partition=batch                        # Partition (queue) name
+#SBATCH --ntasks=1                               # Run on a single CPU
+#SBATCH --cpus-per-task=4                        # Number of cores per task
+#SBATCH --mem=40gb                               # Job memory request
+#SBATCH --time=02-00:00:00                       # Time limit hrs:min:sec
 #SBATCH --output=/scratch/nf26742/scratch/log.%j.out  # Standard output log
 #SBATCH --error=/scratch/nf26742/scratch/log.%j.err   # Standard error log
 
-#SBATCH --mail-type=END,FAIL                   # Mail events (NONE, BEGIN, END, FAIL, ALL)
-#SBATCH --mail-user=nf26742@uga.edu            # Where to send mail
+#SBATCH --mail-type=END,FAIL                     # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=nf26742@uga.edu              # Where to send mail
 
 # Set output directory variable
 OUTDIR="/scratch/nf26742/BovMor1" 
@@ -29,11 +29,13 @@ cd $OUTDIR
 
 # Tell Bactopia to prepare samples and generate FOFN named mbovis_samples.txt
 bactopia prepare \
-    --path /scratch/nf26742/BovMor1/fastqs \
-    --fastq-ext 'R1_001.fastq.gz' 'R2_001.fastq.gz' \
+    --path /scratch/nf26742/BovMor1/fastq \
+    --fastq-ext 'fastq.gz' \
+    --pe1-pattern 'L001_R1' \
+    --pe2-pattern 'L001_R2' \
     --species "Mycobacterium bovis" \
     --genome-size 4400000 \
-    > mbovis_sample.txt
+    > /scratch/nf26742/BovMor1/mbovis_samples.txt
 
 # Invoke Bactopia using the generated FOFN
 bactopia \
