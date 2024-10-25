@@ -16,7 +16,7 @@ OUTDIR=/scratch/nf26742/BovMor1/ncbi_dataset/data/GCF_000195835.3
 SCRIPT=/home/nf26742/October2024
 
 #load modules
-module load Biopythong/1.84-foss-2023b
+module load Biopython/1.84-foss-2023b
 
 #move to working directory
 cd $OUTDIR
