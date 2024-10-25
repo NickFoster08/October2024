@@ -27,6 +27,6 @@ module load Bactopia/3.1.0
 #bactopia tools. Snippy and Gubbins are together in the snippy workflow
 bactopia \
     --wf snippy\
-    --refrence $REF\
+    --reference $REF\
     --exclude $OUTDIR/bactopia-exclude.tsv \
     --bactopia $OUTDIR
