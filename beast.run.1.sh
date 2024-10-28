@@ -4,7 +4,7 @@
 #SBATCH --ntasks=1                               # Run on a single CPU
 #SBATCH --cpus-per-task=4                        # Number of cores per task
 #SBATCH --mem=40gb                               # Job memory request
-#SBATCH --time=02-00:00:00                       # Time limit hrs:min:sec
+#SBATCH --time=07-00:00:00                       # Time limit hrs:min:sec
 #SBATCH --output=/scratch/nf26742/scratch/log.%j.out  # Standard output log
 #SBATCH --error=/scratch/nf26742/scratch/log.%j.err   # Standard error log
 
@@ -15,7 +15,7 @@
 OUTDIR="/scratch/nf26742/BovMor1/fastqs"
 
 #load module
-module load beast/2.6.3
+module load Beast/2.6.3-foss-2021b-CUDA-11.4.1
 
 #run beast
 beast -threads 4 /lustre2/scratch/nf26742/BovMor1/Bovisanalysis.xml
