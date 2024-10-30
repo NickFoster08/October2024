@@ -1,8 +1,23 @@
 import xml.etree.ElementTree as ET
+import os
 
 def fix_xml(file_path, output_path):
+    # Check if the file exists
+    if not os.path.isfile(file_path):
+        print(f"Error: Input file does not exist: {file_path}")
+        return
+    
+    # Read the last few lines of the XML file
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+    
+    print("Last few lines of the XML file:")
+    for line in lines[-10:]:  # Print the last 10 lines
+        print(line.strip())
+
+    # Attempt to parse the XML file
+    print(f"Attempting to open: {file_path}")  # Check the path
     try:
-        # Attempt to parse the XML file
         tree = ET.parse(file_path)
         print("XML file is well-formed.")
         return  # If it's already well-formed, exit the function
@@ -25,6 +40,6 @@ def fix_xml(file_path, output_path):
     print(f"Fixed XML written to {output_path}")
 
 if __name__ == "__main__":
-    input_file = 'core-snp-clean-try-3.xml'  # Your input file
-    output_file = 'core-snp-clean-try-3_fixed.xml'  # Output file for fixed XML
+    input_file = '/lustre2/scratch/nf26742/BovMor1/core-snp-clean-try-3.xml'  # Your input file
+    output_file = '/lustre2/scratch/nf26742/BovMor1/core-snp-clean-try-3_fixed.xml'  # Output file for fixed XML
     fix_xml(input_file, output_file)
