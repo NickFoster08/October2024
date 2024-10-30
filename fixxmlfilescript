@@ -41,4 +41,4 @@ def fix_xml(file_path, output_path):
 if __name__ == "__main__":
     input_file = '/lustre2/scratch/nf26742/BovMor1/core-snp-clean-try-3.xml'  # Your input file
     output_file = '/lustre2/scratch/nf26742/BovMor1/core-snp-clean-try-3_fixed.xml'  # Output file for fixed XML
-    fix_xml(input_file, output_file)
+fix_xml(input_file, output_file)
