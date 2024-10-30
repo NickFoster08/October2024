@@ -25,7 +25,11 @@ def fix_xml(file_path, output_path):
     print(f"Fixed XML written to {output_path}")
 
 if __name__ == "__main__":
-    input_file = '/lustre2/scratch/nf26742/BovMor1/'  # Your input file
-    output_file = '/lustre2/scratch/nf26742/BovMor1/'  # Output file for fixed XML
+    input_file = '/lustre2/scratch/nf26742/BovMor1/core-snp-clean-try-3.xml'  # Your input file
+    output_file = '/lustre2/scratch/nf26742/BovMor1/core-snp-clean-try-3_fixed.xml'  # Output file for fixed XML
+    
+    # Print the paths to confirm
+    print(f"Input file: {input_file}")
+    print(f"Output file: {output_file}")
+    
     fix_xml(input_file, output_file)
-#test
