@@ -12,7 +12,7 @@
 #SBATCH --mail-user=nf26742@uga.edu        # Where to send mail
 
 # Load BEAST module
-module load beast/2.6.3-foss-2021b-CUDA-11.4.1
+module load Beast/2.7.7-GCC-11.3.0 
 
 # Run BEAST with 8 threads
 beast -threads 8 /lustre2/scratch/nf26742/BovMor1/core-snp-clean-try-3.xml
