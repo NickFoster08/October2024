@@ -22,7 +22,3 @@ mkdir -p $outdir
 
 # Run BEAST with 8 threads
 beast -threads 8 /lustre2/scratch/nf26742/BovMor1/fastqs/bactopia-runs/snippy-20241025-125933/core-snp-with-end-cap.xml
-
-# Move output files to the output directory
-mv /lustre2/scratch/nf26742/BovMor1/fastqs/bactopia-runs/snippy-20241025-125933/*.log $outdir
-mv /lustre2/scratch/nf26742/BovMor1/fastqs/bactopia-runs/snippy-20241025-125933/*.trees $outdir
