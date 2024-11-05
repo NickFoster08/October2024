@@ -15,7 +15,7 @@
 module load Beast/2.7.7-GCC-11.3.0 
 
 # Run BEAST with 8 threads and verbose output, saving both stdout and stderr to a single log file
-beast -threads 8 -verbose /lustre2/scratch/nf26742/BovMor1/BEAST/core-snp-clean.full.aln.beast.new.xml &> /scratch/nf26742/scratch/BEAST_run.log
+beast -threads 8 -verbose /lustre2/scratch/nf26742/BovMor1/BEAST/core-snp-clean.full.aln.beast.new.xml
 
 # Add line numbers to the error log for easier troubleshooting
 nl /scratch/nf26742/scratch/log.%j.err > /scratch/nf26742/scratch/log.%j.err.numbered

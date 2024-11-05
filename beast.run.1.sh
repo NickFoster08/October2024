@@ -14,6 +14,15 @@
 # Load BEAST module
 module load Beast/2.7.7-GCC-11.3.0 
 
+# Define the output directory
+outdir="/scratch/nf26742/scratch/beast_output"
+
+# Create the output directory if it doesn't exist
+mkdir -p $outdir
+
 # Run BEAST with 8 threads
-beast -threads 8 /lustre2/scratch/nf26742/BovMor1/BEAST/core-snp-clean.full.aln.beast.new.xml
-#test
+beast -threads 8 /lustre2/scratch/nf26742/BovMor1/fastqs/bactopia-runs/snippy-20241025-125933/core-snp.new.2xml
+
+# Move output files to the output directory
+mv /lustre2/scratch/nf26742/BovMor1/fastqs/bactopia-runs/snippy-20241025-125933/*.log $outdir
+mv /lustre2/scratch/nf26742/BovMor1/fastqs/bactopia-runs/snippy-20241025-125933/*.trees $outdir
