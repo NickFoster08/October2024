@@ -15,4 +15,5 @@
 module load Beast/2.7.7-GCC-11.3.0 
 
 # Run BEAST with 8 threads
-beast -threads 8 /lustre2/scratch/nf26742/BovMor1/core-snp-clean.full.aln.beast.xml
+beast -threads 8 /lustre2/scratch/nf26742/BovMor1/BEAST/core-snp-clean.full.aln.beast.new.xml
+#test
