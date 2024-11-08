@@ -13,6 +13,7 @@
 
 # Activate conda environment and run the script
 module load conda
+conda init
 conda activate vsnp3
 
 # Run vsnp3 with your FASTQ files
