@@ -11,7 +11,7 @@
 #SBATCH --mail-type=END,FAIL               # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=nf26742@uga.edu        # Where to send mail
 
-# Navigate to the correct directory (using the full path)
+# Navigate to the correct directory (use the full path)
 cd /scratch/nf26742/BovMor1/fastqs
 
 # Verify the files exist
