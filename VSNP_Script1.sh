@@ -21,4 +21,5 @@ OUTDIR="/home/nf26742/vsnpBovisWorkflow"  # No `$` here
 cd /scratch/nf26742/BovMor1/fastqs
 
 # Run vSNP command
-vsnp3_step1.py -o $OUTDIR
+vsnp3_step1.py -r1 /scratch/nf26742/BovMor1/fastqs/sample_R1.fastq -r2 /scratch/nf26742/BovMor1/fastqs/sample_R2.fastq -o $OUTDIR
+
