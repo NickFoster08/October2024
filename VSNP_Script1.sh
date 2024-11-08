@@ -11,12 +11,8 @@
 #SBATCH --mail-type=END,FAIL               # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=nf26742@uga.edu        # Where to send mail
 
-# Set the path to the directory containing your FASTQ files
-cd /scratch/nf26742/BovMor1/fastq  # Adjust this path to your FASTQ folder
+cd ~//scratch/nf26742/BovMor1/fastqs
+vsnp3_step1.py -r1 *_R1*.fastq.gz -r2 *_R2*.fastq.gz -t Mycobacterium_AF2122
 
-# Step 1: Run the first part of the VSNP process (ensure your files match the pattern)
-vsnp3_step1.py -r1 *_R1*.fastq.gz -r2 *_R2*.fastq.gz -t Mycobacterium_bovis
-
-# Step 2: Run the second part of the VSNP process (adjust to your needs)
-cd /scratch/nf26742/BovMor1/fastq  # Adjust to where you want step2 outputs
-vsnp3_step2.py -a -t Mycobacterium_bovis
+cd ~//scratch/nf26742/BovMor1/fastqs
+vsnp3_step2.py -a -t Mycobacterium_AF2122
