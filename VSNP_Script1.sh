@@ -11,8 +11,10 @@
 #SBATCH --mail-type=END,FAIL               # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=nf26742@uga.edu        # Where to send mail
 
-cd ~/scratch/nf26742/BovMor1/fastqs/step1
+cd ~/scratch/nf26742/BovMor1/fastqs/
 vsnp3_step1.py -r1 *_R1*.fastq.gz -r2 *_R2*.fastq.gz -t Mycobacterium_AF2122
 
-cd ~/scratch/nf26742/BovMor1/fastqs/step2
+cd ~/scratch/nf26742/BovMor1/fastqs/
 vsnp3_step2.py -a -t Mycobacterium_AF2122
+
+##test
