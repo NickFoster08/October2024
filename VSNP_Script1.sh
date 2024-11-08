@@ -11,15 +11,11 @@
 #SBATCH --mail-type=END,FAIL              # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=nf26742@uga.edu       # Where to send mail
 
-# Load VSNP module
-module load vsnp3/3.26
-
 # Define output directory
-OUTDIR="/home/nf26742/vsnpBovisWorkflow"  # No `$` here
+OUTDIR="/home/nf26742/vsnpBovisWorkflow"
 
 # Navigate to working directory with fastqs
 cd /scratch/nf26742/BovMor1/fastqs
 
-# Run vSNP command
-vsnp3_step1.py -r1 /scratch/nf26742/BovMor1/fastqs/sample_R1.fastq -r2 /scratch/nf26742/BovMor1/fastqs/sample_R2.fastq -o $OUTDIR
-
+# Run vSNP command with the correct FASTQ files
+vsnp3_step1.py -r1 17-12280_S21_L001_R1.fastq.gz -r2 17-12280_S21_L001_R2.fastq.gz -o $OUTDIR
