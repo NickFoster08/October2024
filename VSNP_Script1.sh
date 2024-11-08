@@ -14,7 +14,7 @@
 # Load vsnp module (if needed)
 module load vsnp
 
-# Navigate to the directory with FASTQ files
+# Navigate to the correct directory
 cd /scratch/nf26742/BovMor1/fastqs
 
 # Run vsnp3_step1.py with the appropriate file patterns
