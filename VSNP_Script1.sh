@@ -1,12 +1,15 @@
 #!/bin/bash
-#SBATCH --job-name=vsnp3_analysis
-#SBATCH --output=vsnp3_analysis.out
-#SBATCH --error=vsnp3_analysis.err
-#SBATCH --time=48:00:00       # Set max job time (adjust as needed)
-#SBATCH --mem=32G             # Set memory allocation (adjust as needed)
-#SBATCH --cpus-per-task=8     # Number of cores per task (adjust as needed)
-#SBATCH --nodes=1             # Number of nodes
-#SBATCH --partition=batch     # Use appropriate partition (e.g., batch, short, etc.)
+#SBATCH --job-name=VSNP_mbovis_mor        # Job name
+#SBATCH --partition=batch                  # Partition (queue) name
+#SBATCH --ntasks=1                         # Run on a single CPU
+#SBATCH --cpus-per-task=8                  # Number of cores per task
+#SBATCH --mem=40gb                         # Job memory request
+#SBATCH --time=02-00:00:00                 # Time limit hrs:min:sec
+#SBATCH --output=/scratch/nf26742/scratch/log.%j.out  # Standard output log
+#SBATCH --error=/scratch/nf26742/scratch/log.%j.err   # Standard error log
+
+#SBATCH --mail-type=END,FAIL               # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=nf26742@uga.edu        # Where to send mail
 
 # Load the required Conda module (if not automatically loaded)
 module load conda
