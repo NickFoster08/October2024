@@ -11,33 +11,12 @@
 #SBATCH --mail-type=END,FAIL               # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=nf26742@uga.edu        # Where to send mail
 
-# Load the required Conda module (if not automatically loaded)
-module load conda
+# Set the path to the directory containing your FASTQ files
+cd /scratch/nf26742/BovMor1/fastq  # Adjust this path to your FASTQ folder
 
-# Activate the vSNP3 environment
-source ~/anaconda3/etc/profile.d/conda.sh
-conda activate vsnp3
+# Step 1: Run the first part of the VSNP process (ensure your files match the pattern)
+vsnp3_step1.py -r1 *_R1*.fastq.gz -r2 *_R2*.fastq.gz -t Mycobacterium_bovis
 
-# Set paths for your FASTQ files and reference
-FASTQ_DIR="/scratch/nf26742/BovMor1/fastqs"
-OUTPUT_DIR="/scratch/nf26742/vsnp3_output"
-REFERENCE_DIR="~/vsnp3_test_dataset/vsnp_dependencies"
-
-# Add the reference to the environment
-vsnp3_path_adder.py -d $REFERENCE_DIR
-
-# Step 1: Alignment and SNP calling
-cd $FASTQ_DIR
-
-# Run vSNP3 Step 1
-vsnp3_step1.py -r1 ${FASTQ_DIR}/*_R1*.fastq.gz -r2 ${FASTQ_DIR}/*_R2*.fastq.gz -t Mycobacterium_AF2122 -o $OUTPUT_DIR
-
-# Step 2: SNP matrix and phylogenetic tree generation
-cd $OUTPUT_DIR/step2
-
-# Run vSNP3 Step 2 using the Zero Coverage VCF files from Step 1
-vsnp3_step2.py -a -t Mycobacterium_AF2122 -o $OUTPUT_DIR
-
-# Deactivate Conda environment
-conda deactivate
-
+# Step 2: Run the second part of the VSNP process (adjust to your needs)
+cd /scratch/nf26742/BovMor1/fastq  # Adjust to where you want step2 outputs
+vsnp3_step2.py -a -t Mycobacterium_bovis
