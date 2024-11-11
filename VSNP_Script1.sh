@@ -52,3 +52,4 @@ for R1 in *_R1.fastq.gz; do
     else
         echo "Warning: Missing R2 file for $R1, skipping..."
     fi
+done 
