@@ -18,5 +18,8 @@ module load vsnp3/3.26
 cd /scratch/nf26742/BovMor1/fastqs
 
 # Run vsnp3_step1.py with the appropriate file patterns
-vsnp3_step1.py -r1 *_R1.fastq.gz -r2 *_R2.fastq.gz -t Mycobacterium_AF2122
+vsnp3_step1.py \
+    -r1 *_R1.fastq.gz \
+    -r2 *_R2.fastq.gz \
+    -t Mycobacterium_AF2122
 
