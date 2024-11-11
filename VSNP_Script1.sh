@@ -18,6 +18,6 @@ module load vsnp3/3.26
 cd /scratch/nf26742/BovMor1/fastqs
 
 # Run vsnp3_step1.py with the appropriate file patterns
-vsnp3_step1.py -r1 /scratch/nf26742/BovMor1/fastqs/17-12281_S22_L001_R1.fastq.gz \
-               -r2 /scratch/nf26742/BovMor1/fastqs/17-12281_S22_L001_R2.fastq.gz \
-               -t GCF_000195955.2_ASM19595v2_genomic.fna.gz
+/apps/eb/vsnp3/3.26/bin/vsnp3_step1.py -r1 /scratch/nf26742/BovMor1/fastqs/17-12281_S22_L001_R1.fastq.gz \
+                                       -r2 /scratch/nf26742/BovMor1/fastqs/17-12281_S22_L001_R2.fastq.gz \
+                                       -fasta /scratch/nf26742/BovMor1/fastqs/GCF_000195955.2_ASM19595v2_genomic.fna
