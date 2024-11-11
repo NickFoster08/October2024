@@ -11,6 +11,14 @@
 #SBATCH --mail-type=END,FAIL              # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=nf26742@uga.edu       # Where to send mail
 
+# Set output directory variable
+OUTDIR=/scratch/nf26742/BovMor1/fastqs/VSNP_Output
+
+# Create the output directory if it doesn't exist
+if [ ! -d $OUTDIR ]; then
+    mkdir -p $OUTDIR
+fi
+
 # Load vsnp module
 module load vsnp3/3.26
 
@@ -19,6 +27,6 @@ cd /scratch/nf26742/BovMor1/fastqs
 
 # Run vsnp3_step1.py with the appropriate file patterns
 vsnp3_step1.py \
-    -r1 /scratch/nf26742/BovMor1/fastqs/17-12281_S22_L001_R1.fastq.gz \
-    -r2 /scratch/nf26742/BovMor1/fastqs/17-12281_S22_L001_R2.fastq.gz \
+    -r1 /scratch/nf26742/BovMor1/fastqs/"*_R1.fastq.gz" \
+    -r2 /scratch/nf26742/BovMor1/fastqs/"*_R2.fastq.gz" \
     -r /scratch/nf26742/BovMor1/fastqs/NC_002945v4.fasta
