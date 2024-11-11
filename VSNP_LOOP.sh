@@ -36,8 +36,7 @@ for r1_file in *_R1.fastq.gz; do
         vsnp3_step1.py \
             -r1 "$r1_file" \
             -r2 "$r2_file" \
-            -t Mycobacterium_bovis_Morocco \
-            -r /scratch/nf26742/BovMor1/fastqs/NC_002945v4.fasta
+            -r /scratch/nf26742/BovMor1/fastqs/GCF_000195955.2_ASM19595v2_genomic.fna
     else
         echo "Warning: Matching R2 file not found for $r1_file"
     fi
