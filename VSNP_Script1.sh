@@ -25,8 +25,30 @@ module load vsnp3/3.26
 # Navigate to the correct directory
 cd /scratch/nf26742/BovMor1/fastqs
 
-# Run vsnp3_step1.py with the appropriate file patterns
-vsnp3_step1.py \
-    -r1 /scratch/nf26742/BovMor1/fastqs/"*_R1.fastq.gz" \
-    -r2 /scratch/nf26742/BovMor1/fastqs/"*_R2.fastq.gz" \
-    -r /scratch/nf26742/BovMor1/fastqs/NC_002945v4.fasta
+# Loop through R1 files using wildcard
+for R1 in *_R1.fastq.gz; do
+    # Generate the corresponding R2 file name by replacing _R1 with _R2
+    R2="${R1/_R1/_R2}"
+    
+    # Check if the corresponding R2 file exists
+    if [[ -f "$R2" ]]; then
+        # Extract the sample name (e.g., 17-12281_S22_L001)
+        SAMPLE_NAME=$(basename "$R1" "_R1.fastq.gz")
+        
+        # Create output directory for each sample
+        SAMPLE_OUTDIR="$OUTDIR/$SAMPLE_NAME"
+        if [ ! -d "$SAMPLE_OUTDIR" ]; then
+            mkdir -p "$SAMPLE_OUTDIR"
+        fi
+        
+        echo "Processing sample: $SAMPLE_NAME"
+        
+        # Run vsnp3_step1.py for the pair
+        vsnp3_step1.py \
+            -r1 "$R1" \
+            -r2 "$R2" \
+            -r /scratch/nf26742/BovMor1/fastqs/NC_002945v4.fasta \
+            -o "$SAMPLE_OUTDIR"
+    else
+        echo "Warning: Missing R2 file for $R1, skipping..."
+    fi
