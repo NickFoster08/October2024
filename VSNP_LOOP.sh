@@ -11,11 +11,22 @@
 #SBATCH --mail-type=END,FAIL              # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=nf26742@uga.edu       # Where to send mail
 
+# Cleanup any pre-existing directory
+if [ -d "/scratch/nf26742/BovMor1/fastqs/alignment_GCF_000195955/unmapped_reads" ]; then
+    echo "Cleaning up pre-existing unmapped_reads directory"
+    rm -rf /scratch/nf26742/BovMor1/fastqs/alignment_GCF_000195955/unmapped_reads
+fi
+
+# Create a new output directory
+echo "Creating output directory: /scratch/nf26742/BovMor1/fastqs/alignment_GCF_000195955/unmapped_reads"
+mkdir -p /scratch/nf26742/BovMor1/fastqs/alignment_GCF_000195955/unmapped_reads || { echo "Failed to create directory"; exit 1; }
+
 # Set output directory variable
 OUTDIR=/scratch/nf26742/BovMor1/fastqs/VSNP_Output
 
 # Create the output directory if it doesn't exist
 if [ ! -d $OUTDIR ]; then
+    echo "Creating VSNP output directory: $OUTDIR"
     mkdir -p $OUTDIR
 fi
 
@@ -32,6 +43,7 @@ for r1_file in *_R1.fastq.gz; do
     
     # Check if R2 file exists
     if [ -f "$r2_file" ]; then
+        echo "Processing pair: $r1_file and $r2_file"
         # Run vsnp3_step1.py for each pair of R1 and R2 files
         vsnp3_step1.py \
             -r1 "$r1_file" \
