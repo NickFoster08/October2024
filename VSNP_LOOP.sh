@@ -12,14 +12,15 @@
 #SBATCH --mail-user=nf26742@uga.edu       # Where to send mail
 
 # Cleanup any pre-existing directory
-if [ -d "/scratch/nf26742/BovMor1/fastqs/alignment_GCF_000195955/unmapped_reads" ]; then
+unmapped_dir="/scratch/nf26742/BovMor1/fastqs/alignment_GCF_000195955/unmapped_reads"
+if [ -d "$unmapped_dir" ]; then
     echo "Cleaning up pre-existing unmapped_reads directory"
-    rm -rf /scratch/nf26742/BovMor1/fastqs/alignment_GCF_000195955/unmapped_reads
+    rm -rf "$unmapped_dir"
 fi
 
 # Create a new output directory
-echo "Creating output directory: /scratch/nf26742/BovMor1/fastqs/alignment_GCF_000195955/unmapped_reads"
-mkdir -p /scratch/nf26742/BovMor1/fastqs/alignment_GCF_000195955/unmapped_reads || { echo "Failed to create directory"; exit 1; }
+echo "Creating output directory: $unmapped_dir"
+mkdir -p "$unmapped_dir" || { echo "Failed to create directory"; exit 1; }
 
 # Set output directory variable
 OUTDIR=/scratch/nf26742/BovMor1/fastqs/VSNP_Output
