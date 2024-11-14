@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=VSNP_mbovis_mor        # Job name
+#SBATCH --job-name=VSNP_mbovis_mor_test        # Job name
 #SBATCH --partition=batch                 # Partition (queue) name
 #SBATCH --ntasks=1                        # Run on a single CPU
 #SBATCH --cpus-per-task=8                 # Number of cores per task
@@ -29,4 +29,4 @@ cd /scratch/nf26742/BovMor1/fastqs
 vsnp3_step1.py \
     -r1 *_R1.fastq.gz \
     -r2 *_R2.fastq.gz \
-    -r /scratch/nf26742/BovMor1/fastqs/NC_002945v4.fasta
+    -r /scratch/nf26742/BovMor1/fastqs/GCF_000195955.2_ASM19595v2_genomic.fna
