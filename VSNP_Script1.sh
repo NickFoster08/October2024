@@ -27,6 +27,6 @@ cd /scratch/nf26742/BovMor1/fastqs
 
 # Run vsnp3_step1.py with the appropriate file patterns
 vsnp3_step1.py \
-    -r1 *17-12280_L001_R1.fastq.gz \
-    -r2 *17-12280_L001_R2.fastq.gz \
+    -r1 */scratch/nf26742/BovMor1/fastqs/17-12280_L001_R1.fastq.gz \
+    -r2 */scratch/nf26742/BovMor1/fastqs/17-12280_L001_R2.fastq.gz \
     -r /scratch/nf26742/BovMor1/fastqs/GCF_000195955.2_ASM19595v2_genomic.fna
