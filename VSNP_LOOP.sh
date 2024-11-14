@@ -12,7 +12,7 @@
 #SBATCH --mail-user=nf26742@uga.edu       # Where to send mail
 
 # Cleanup any pre-existing directory
-unmapped_dir="/scratch/nf26742/BovMor1/fastqs/alignment_GCF_000195955/unmapped_reads"
+unmapped_dir="/scratch/nf26742/BovMor1/fastqs/unmapped_reads_1"
 if [ -d "$unmapped_dir" ]; then
     echo "Cleaning up pre-existing unmapped_reads directory"
     rm -rf "$unmapped_dir"
