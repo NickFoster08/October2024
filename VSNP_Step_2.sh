@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=VSNP_mbovis_Loop        # Job name
+#SBATCH --job-name=VSNP_Step2_mbovis       # Job name
 #SBATCH --partition=batch                     # Partition (queue) name
 #SBATCH --ntasks=1                            # Run on a single CPU
 #SBATCH --cpus-per-task=8                     # Number of cores per task
