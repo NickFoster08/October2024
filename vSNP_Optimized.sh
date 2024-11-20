@@ -20,9 +20,6 @@ if [ ! -d "$OUTDIR" ]; then
     mkdir -p "$OUTDIR"
 fi
 
-# Set location of fastq variable
-FASTQS="/scratch/nf26742/BovMor1/fastqs"
-
 # Set reference variable 
 REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
 
@@ -30,36 +27,12 @@ REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF21
 module load vsnp3/3.26
 
 # Navigate to the correct directory
-cd /scratch/nf26742/BovMor1/fastqs || { echo "Directory not found! Exiting."; exit 1; }
+cd /scratch/nf26742/BovMor1/fastqs
 
-# Check for the existence of matching R1 and R2 files before running vsnp3_step1
-for r1_file in "$FASTQS"/*_R1.fastq.gz; do
-    # Derive the corresponding R2 file name
-    r2_file="${r1_file/_R1/_R2}"
+# Run vsnp3_step1.py for each pair of R1 and R2 files
+vsnp3_step1.py \
+    -r1 "*_L001_R1.fastq.gz" \
+    -r2 "*_L001_R2.fastq.gz" \
+    -t "$REFERENCE" \
+    -o "$OUTDIR"
 
-    # Check if R1 and R2 files exist
-    if [ ! -f "$r1_file" ]; then
-        echo "Error: $r1_file not found"
-        exit 1
-    fi
-    
-    if [ ! -f "$r2_file" ]; then
-        echo "Error: $r2_file not found"
-        exit 1
-    fi
-done
-
-# Now process each pair of R1 and R2 files
-for r1_file in $FASTQS/*_R1.fastq.gz; do
-    # Generate the corresponding R2 file by replacing _R1 with _R2
-    r2_file="${r1_file/_R1/_R2}"
-    
-    echo "Processing pair: $r1_file and $r2_file"
-
-    # Run vsnp3_step1.py for each pair of R1 and R2 files
-    vsnp3_step1.py \
-        -r1 "$r1_file" \
-        -r2 "$r2_file" \
-        -t "$REFERENCE" \
-        -o "$OUTDIR"
-done
