@@ -21,7 +21,7 @@ if [ ! -d "$OUTDIR" ]; then
 fi
 
 #Set location of fastq variable
-$FASTQS="/scratch/nf26742/BovMor1/fastqs"
+FASTQS="/scratch/nf26742/BovMor1/fastqs"
 
 # Set reference variable 
 REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
