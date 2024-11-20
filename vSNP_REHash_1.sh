@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=VSNP_mbovis_Loop        # Job name
+#SBATCH --job-name=VSNP_mbovis_ReDO        # Job name
 #SBATCH --partition=batch                     # Partition (queue) name
 #SBATCH --ntasks=1                            # Run on a single CPU
 #SBATCH --cpus-per-task=8                     # Number of cores per task
@@ -40,8 +40,8 @@ for R1 in *_R1.fastq.gz; do
         vsnp3_step1.py \
             -r1 "$R1" \
             -r2 "$R2" \
-            -r "$REFERENCE" \
-            -o "$OUTDIR/$SAMPLE"
+            -t "$REFERENCE" \
+            -o "$OUTDIR"
 
     else
         echo "Warning: Missing R2 for sample $SAMPLE, skipping..."
