@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=VSNP_Step2_mbovis       # Job name
+#SBATCH --job-name=vSNP_Step2_mbovis       # Job name
 #SBATCH --partition=batch                     # Partition (queue) name
 #SBATCH --ntasks=1                            # Run on a single CPU
 #SBATCH --cpus-per-task=8                     # Number of cores per task
@@ -23,11 +23,11 @@ fi
 module load vsnp3/3.26
 
 # Navigate to the correct directory
-cd /scratch/nf26742/BovMor1/fastqs
+cd /scratch/nf26742/BovMor1/fastqs/zc.vcf_Step1_Output
 
 # Reference genome file
-REFERENCE="/scratch/nf26742/BovMor1/fastqs/'Mbovis GenBank.gb'"
+REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
 
 #Start step 2 analysis
-cd /scratch/nf26742/BovMor1/fastqs/VCF_Files
-vsnp3_step2.py -a -t Mycobacterium_AF2122
+cd /scratch/nf26742/BovMor1/fastqs/zc.vcf_Step1_Output
+vsnp3_step2.py -a -t $REFERENCE
