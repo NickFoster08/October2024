@@ -26,7 +26,7 @@ module load vsnp3/3.26
 cd /scratch/nf26742/BovMor1/fastqs
 
 # Reference genome file
-REFERENCE="/scratch/nf26742/BovMor1/fastqs/GCF_000195955.2_ASM19595v2_genomic.fna"
+REFERENCE="/scratch/nf26742/BovMor1/fastqs/'Mbovis GenBank.gb'"
 
 #Start step 2 analysis
 cd /scratch/nf26742/BovMor1/fastqs/VCF_Files

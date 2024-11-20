@@ -26,10 +26,7 @@ module load vsnp3/3.26
 cd /scratch/nf26742/BovMor1/fastqs
 
 # Reference genome file
-REFERENCE="/scratch/nf26742/BovMor1/fastqs/GCF_000195955.2_ASM19595v2_genomic.fna"
-
-# Annotation file
-ANNOTATION="/scratch/nf26742/BovMor1/fastqs/genomic.gff"
+REFERENCE="/scratch/nf26742/BovMor1/fastqs/'Mbovis GenBank.gb'
 
 # Loop through all R1 fastq files and find their corresponding R2
 for R1 in *_R1.fastq.gz; do
@@ -44,7 +41,6 @@ for R1 in *_R1.fastq.gz; do
             -r1 "$R1" \
             -r2 "$R2" \
             -r "$REFERENCE" \
-            -a "$ANNOTATION" \
             -o "$OUTDIR/$SAMPLE"
 
     else
