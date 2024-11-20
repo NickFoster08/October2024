@@ -20,7 +20,10 @@ if [ ! -d "$OUTDIR" ]; then
     mkdir -p "$OUTDIR"
 fi
 
-# Set reference variable (fixed typo in variable assignment)
+#Set location of fastq variable
+$FASTQS="/scratch/nf26742/BovMor1/fastqs"
+
+# Set reference variable 
 REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
 
 # Load vsnp module
@@ -30,7 +33,7 @@ module load vsnp3/3.26
 cd /scratch/nf26742/BovMor1/fastqs || { echo "Directory not found! Exiting."; exit 1; }
 
 # Loop over each pair of R1 and R2 files
-for r1_file in *_R1.fastq.gz; do
+for r1_file in $FASTQS/*_R1.fastq.gz; do
     # Generate the corresponding R2 file by replacing _R1 with _R2
     r2_file="${r1_file/_R1/_R2}"
     
