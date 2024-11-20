@@ -28,7 +28,7 @@ module load vsnp3/3.26
 
 # Run vsnp3_step1.py for all files
 vsnp3_step1.py \
-    -r1 /scratch/nf26742/BovMor1/fastqs/*_R1.fastq.gz \
-    -r2 /scratch/nf26742/BovMor1/fastqs/*_R2.fastq.gz \
+    -r1 "/scratch/nf26742/BovMor1/fastqs/L001_R1.fastq.gz" \
+    -r2 "/scratch/nf26742/BovMor1/fastqs/L001_R2.fastq.gz" \
     -t "$REFERENCE" \
     -o "$OUTDIR"
