@@ -26,9 +26,9 @@ module load vsnp3/3.26
 cd /scratch/nf26742/BovMor1/fastqs
 
 # Reference genome file
-REFERENCE="/scratch/nf26742/BovMor1/fastqs/'Mbovis GenBank.gb'
+REFERENCE="/scratch/nf26742/BovMor1/fastqs/'Mbovis GenBank.gb'"
 
-# Loop through all R1 fastq files and find their corresponding R2
+#Loop through all R1 fastq files and find their corresponding R2
 for R1 in *_R1.fastq.gz; do
     SAMPLE=$(basename $R1 _R1.fastq.gz)
     R2="${SAMPLE}_R2.fastq.gz"
