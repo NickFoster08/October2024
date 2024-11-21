@@ -23,7 +23,7 @@ module load vsnp3/3.26
 cd "/scratch/nf26742/BovMor1/fastqs" 
 
 vsnp3_step1.py \
-    -r1 "17-12315_S44_L001_R1.fastq.gz" \
-    -r2 "17-12315_S44_L001_R2.fastq.gz" \
-    -t  "/scratch/nf26742/BovMor1/fastqs/Ref_Mbov/GCF_000195835.3_ASM19583v2_genomic.gff.gz"\
+    -r1 "/scratch/nf26742/BovMor1/fastqs17-12315_S44_L001_R1.fastq.gz" \
+    -r2 "/scratch/nf26742/BovMor1/fastqs17-12315_S44_L001_R2.fastq.gz" \
+    -t "/scratch/nf26742/BovMor1/fastqs/Ref_Mbov/GCF_000195835.3_ASM19583v2_genomic.gff.gz"\
     -o "$OUTDIR"
