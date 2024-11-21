@@ -23,30 +23,14 @@ fi
 module load vsnp3/3.26
 
 # Navigate to the correct directory
-cd "/scratch/nf26742/BovMor1/fastqs" || { echo "Error: Directory not found"; exit 1; }
+cd "/scratch/nf26742/BovMor1/fastqs" 
 
 # Reference genome file
 REFERENCE="/scratch/nf26742/BovMor1/fastqs/Ref_Mbov/genomic.gbk"
+ vsnp3_step1.py \
+    -r1 "17-12315_S44_L001_R1.fastq.gz" \
+    -r2 "17-12315_S44_L001_R2.fastq.gz" \
+    -t "$REFERENCE" \
+    -o "$OUTDIR"
 
-# Loop through all R1 fastq files and find their corresponding R2
-for R1 in *_R1.fastq.gz; do
-    SAMPLE=$(basename "$R1" _R1.fastq.gz)
-    R2="${SAMPLE}_R2.fastq.gz"
 
-    # Check if the corresponding R2 file exists and is not empty
-    if [ -f "$R2" ] && [ -s "$R2" ]; then
-        echo "Processing sample: $SAMPLE"
-        
-        vsnp3_step1.py \
-            -r1 "$R1" \
-            -r2 "$R2" \
-            -t "$REFERENCE" \
-            -o "$OUTDIR"
-
-    else
-        echo "Warning: Missing or empty R2 for sample $SAMPLE, skipping..."
-    fi
-done
-
-# Optional: Indicate successful completion
-echo "Job completed successfully" >> "$OUTDIR/job_status.txt"
