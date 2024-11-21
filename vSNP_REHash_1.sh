@@ -15,7 +15,7 @@
 OUTDIR="/scratch/nf26742/BovMor1/fastqs/VSNP_Output"
 
 # Set reference genome variable
-REFERENCE="/scratch/nf26742/BovMor1/fastqs/Ref_Mbov/GCF_000195835.3_ASM19583v2_genomic.gbff"
+REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
 
 # Create the output directory if it doesn't exist
 if [ ! -d "$OUTDIR" ]; then
