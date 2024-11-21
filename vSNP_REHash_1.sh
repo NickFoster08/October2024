@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=VSNP_mbovis_ReDO        # Job name
+#SBATCH --job-name=VSNP_mbovis_ReRun        # Job name
 #SBATCH --partition=batch                  # Partition (queue) name
 #SBATCH --ntasks=1                         # Run on a single CPU
 #SBATCH --cpus-per-task=8                  # Number of cores per task
@@ -15,7 +15,7 @@
 OUTDIR="/scratch/nf26742/BovMor1/fastqs/VSNP_Output"
 
 # Set reference genome variable
-REFERENCE="/scratch/nf26742/BovMor1/fastqs/Ref_Mbov/GCF_000195835.3_ASM19583v2_genomic.gff.gz"
+REFERENCE="/scratch/nf26742/BovMor1/fastqs/Ref_Mbov/GCF_000195835.3_ASM19583v2_genomic.gbff"
 
 # Create the output directory if it doesn't exist
 if [ ! -d "$OUTDIR" ]; then
