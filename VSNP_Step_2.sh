@@ -23,11 +23,11 @@ fi
 module load vsnp3/3.26
 
 # Navigate to the correct directory
-cd /scratch/nf26742/BovMor1/fastqs
+cd /scratch/nf26742/BovMor1/fastqs/VSNP_Output
 
 # Reference genome file
 REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
 
-#Start step 2 analysis
-cd /scratch/nf26742/BovMor1/fastqs/zc.vcf_Step1_Output
-vsnp3_step2.py -a -t $REFERENCE
+# Start step 2 analysis with the correct .vcf files
+vsnp3_step2.py -a -t $REFERENCE -v 17-12281_zc.vcf -v 17-12300_zc.vcf -v 17-12301_zc.vcf -v 17-12326_zc.vcf
+
