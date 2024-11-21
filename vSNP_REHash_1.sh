@@ -13,17 +13,40 @@
 
 # Set output directory variable
 OUTDIR="/scratch/nf26742/BovMor1/fastqs/VSNP_Output"
+
+# Set reference genome variable
+REFERENCE="/scratch/nf26742/BovMor1/fastqs/Ref_Mbov/GCF_000195835.3_ASM19583v2_genomic.gff.gz"
+
 # Create the output directory if it doesn't exist
 if [ ! -d "$OUTDIR" ]; then
     mkdir -p "$OUTDIR"
 fi
+
 # Load vsnp module
 module load vsnp3/3.26
-# Navigate to the correct directory
-cd "/scratch/nf26742/BovMor1/fastqs" 
 
-vsnp3_step1.py \
-    -r1 "/scratch/nf26742/BovMor1/fastqs/17-12315_S44_L001_R1.fastq.gz" \
-    -r2 "/scratch/nf26742/BovMor1/fastqs/17-12315_S44_L001_R2.fastq.gz" \
-    -t "/scratch/nf26742/BovMor1/fastqs/Ref_Mbov/GCF_000195835.3_ASM19583v2_genomic.gff.gz"\
-    -o "$OUTDIR"
+# Navigate to the correct directory
+cd "/scratch/nf26742/BovMor1/fastqs" || { echo "Error: Directory not found"; exit 1; }
+
+# Loop over each pair of R1 and R2 files
+for r1_file in *_R1.fastq.gz; do
+    # Generate the corresponding R2 file by replacing _R1 with _R2
+    r2_file="${r1_file/_R1/_R2}"
+    
+    # Check if R2 file exists
+    if [ -f "$r2_file" ]; then
+        echo "Processing: $r1_file and $r2_file"
+        
+        # Run vsnp3_step1.py for each pair of R1 and R2 files
+        vsnp3_step1.py \
+            -r1 "$r1_file" \
+            -r2 "$r2_file" \
+            -t "$REFERENCE" \
+            -o "$OUTDIR"
+    else
+        echo "Warning: Missing R2 file for $r1_file, skipping..."
+    fi
+done
+
+# Optional: Indicate successful completion
+echo "Job completed successfully" >> "$OUTDIR/job_status.txt"
