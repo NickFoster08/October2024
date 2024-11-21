@@ -19,15 +19,15 @@ if [ ! -d $OUTDIR ]; then
     mkdir -p $OUTDIR
 fi
 
+# Reference genome file
+REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
+
 # Load vsnp module
 module load vsnp3/3.26
 
 # Navigate to the correct directory
-cd /scratch/nf26742/BovMor1/fastqs/VSNP_Output
+cd /scratch/nf26742/BovMor1/fastqs/VCF_Files_Moved
 
-# Reference genome file
-REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
-
-# Start step 2 analysis with the correct .vcf files
-vsnp3_step2.py -a -t $REFERENCE -v 17-12281_zc.vcf -v 17-12300_zc.vcf -v 17-12301_zc.vcf -v 17-12326_zc.vcf
+# Start step 2 analysis
+vsnp3_step2.py -a -t $REFERENCE 
 
