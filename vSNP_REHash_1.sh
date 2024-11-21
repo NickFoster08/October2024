@@ -35,4 +35,18 @@ for R1 in *_R1.fastq.gz; do
 
     # Check if the corresponding R2 file exists and is not empty
     if [ -f "$R2" ] && [ -s "$R2" ]; then
-  
+        echo "Processing sample: $SAMPLE"
+        
+        vsnp3_step1.py \
+            -r1 "$R1" \
+            -r2 "$R2" \
+            -t "$REFERENCE" \
+            -o "$OUTDIR"
+
+    else
+        echo "Warning: Missing or empty R2 for sample $SAMPLE, skipping..."
+    fi
+done
+
+# Optional: Indicate successful completion
+echo "Job completed successfully" >> "$OUTDIR/job_status.txt"
