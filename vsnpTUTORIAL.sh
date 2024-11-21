@@ -14,3 +14,5 @@
 cd ~/vsnp3_test_dataset/AF2122_test_files/step1
 vsnp3_step1.py -r1 *_R1*.fastq.gz -r2 *_R2*.fastq.gz -t Mycobacterium_AF2122
 
+cd ~/vsnp3_test_dataset/AF2122_test_files/step2
+vsnp3_step2.py -a -t Mycobacterium_AF2122
