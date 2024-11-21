@@ -12,7 +12,7 @@
 #SBATCH --mail-user=nf26742@uga.edu              # Where to send mail
 
 #set output directory variable
-OUTDIR=/scratch/nf26742/BovMor1/ncbi_dataset/data/GCF_000195835.3
+OUTDIR=/scratch/nf26742/BovMor1/fastqs/Ref_Mbov/GCF_000195835.3_ASM19583v2_genomic.gbff.gz
 SCRIPT=/home/nf26742/October2024
 
 #load modules
