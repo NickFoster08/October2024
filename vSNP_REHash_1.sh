@@ -13,24 +13,17 @@
 
 # Set output directory variable
 OUTDIR="/scratch/nf26742/BovMor1/fastqs/VSNP_Output"
-
 # Create the output directory if it doesn't exist
 if [ ! -d "$OUTDIR" ]; then
     mkdir -p "$OUTDIR"
 fi
-
 # Load vsnp module
 module load vsnp3/3.26
-
 # Navigate to the correct directory
 cd "/scratch/nf26742/BovMor1/fastqs" 
 
-# Reference genome file
-REFERENCE="/scratch/nf26742/BovMor1/fastqs/Ref_Mbov/genomic.gbk"
- vsnp3_step1.py \
+vsnp3_step1.py \
     -r1 "17-12315_S44_L001_R1.fastq.gz" \
     -r2 "17-12315_S44_L001_R2.fastq.gz" \
-    -t "$REFERENCE" \
+    -t  "/scratch/nf26742/BovMor1/fastqs/Ref_Mbov/genomic.gbk"\
     -o "$OUTDIR"
-
-
