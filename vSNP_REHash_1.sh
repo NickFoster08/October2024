@@ -26,7 +26,7 @@ module load vsnp3/3.26
 cd "/scratch/nf26742/BovMor1/fastqs" || { echo "Error: Directory not found"; exit 1; }
 
 # Reference genome file
-REFERENCE="/scratch/nf26742/BovMor1/fastqs/Ref_Mbov/GCF_000195835.3_ASM19583v2_genomic.gbff.gz"
+REFERENCE="/scratch/nf26742/BovMor1/fastqs/Ref_Mbov/genomic.gbk"
 
 # Loop through all R1 fastq files and find their corresponding R2
 for R1 in *_R1.fastq.gz; do
