@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=VSNP_mbovis_ReRun        # Job name
+#SBATCH --job-name=VSNP_mbovis_Optimized        # Job name
 #SBATCH --partition=batch                  # Partition (queue) name
 #SBATCH --ntasks=1                         # Run on a single CPU
 #SBATCH --cpus-per-task=8                  # Number of cores per task
@@ -11,16 +11,17 @@
 #SBATCH --mail-type=END,FAIL               # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=nf26742@uga.edu        # Where to send mail
 
-# Set output directory variable
-OUTDIR="/scratch/nf26742/BovMor1/fastqs/VSNP_Output"
+# Set output directory for step 1 results
+OUTDIR="/scratch/nf26742/BovMor1/fastqs/VSNP_Output_1"
 
 # Set reference genome variable
 REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
 
-# Create the output directory if it doesn't exist
-if [ ! -d "$OUTDIR" ]; then
-    mkdir -p "$OUTDIR"
-fi
+# Directory to consolidate .zc.vcf files
+VCF_DIR="/scratch/nf26742/BovMor1/fastqs/VSNP_Step2_Input"
+
+# Create the output and VCF directories if they don't exist
+mkdir -p "$OUTDIR" "$VCF_DIR"
 
 # Load vsnp module
 module load vsnp3/3.26
@@ -48,5 +49,10 @@ for r1_file in *_R1.fastq.gz; do
     fi
 done
 
+# Clean up and consolidate .zc.vcf files
+echo "Cleaning up and consolidating .zc.vcf files..."
+find "$OUTDIR" -type f -name "*.zc.vcf" -exec mv {} "$VCF_DIR" \;
+
 # Optional: Indicate successful completion
 echo "Job completed successfully" >> "$OUTDIR/job_status.txt"
+echo "All .zc.vcf files moved to $VCF_DIR" >> "$OUTDIR/job_status.txt"
