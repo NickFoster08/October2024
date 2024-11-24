@@ -14,11 +14,15 @@
 # Set output directory for step 1 results
 OUTDIR="/scratch/nf26742/BovMor1/fastqs/VSNP_Output_1"
 
+# Clean up output directory to avoid conflicts
+if [ -d "$OUTDIR" ]; then
+    echo "Cleaning up pre-existing output directory: $OUTDIR"
+    rm -rf "$OUTDIR"
+fi
+mkdir -p "$OUTDIR"
+
 # Set reference genome variable
 REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
-
-# Create the output and VCF directories if they don't exist
-mkdir -p "$OUTDIR"
 
 # Load vsnp module
 module load vsnp3/3.26
