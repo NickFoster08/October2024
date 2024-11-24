@@ -17,9 +17,6 @@ OUTDIR="/scratch/nf26742/BovMor1/fastqs/VSNP_Output_1"
 # Set reference genome variable
 REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
 
-# Directory to consolidate .zc.vcf files
-VCF_DIR="/scratch/nf26742/BovMor1/fastqs/VSNP_Step2_Input"
-
 # Create the output and VCF directories if they don't exist
 mkdir -p "$OUTDIR" "$VCF_DIR"
 
@@ -27,7 +24,7 @@ mkdir -p "$OUTDIR" "$VCF_DIR"
 module load vsnp3/3.26
 
 # Navigate to the correct directory
-cd "/scratch/nf26742/BovMor1/fastqs" || { echo "Error: Directory not found"; exit 1; }
+cd "/scratch/nf26742/BovMor1/fastqs/fastqs" || { echo "Error: Directory not found"; exit 1; }
 
 # Loop over each pair of R1 and R2 files
 for r1_file in *_R1.fastq.gz; do
@@ -48,11 +45,3 @@ for r1_file in *_R1.fastq.gz; do
         echo "Warning: Missing R2 file for $r1_file, skipping..."
     fi
 done
-
-# Clean up and consolidate .zc.vcf files
-echo "Cleaning up and consolidating .zc.vcf files..."
-find "$OUTDIR" -type f -name "*.zc.vcf" -exec mv {} "$VCF_DIR" \;
-
-# Optional: Indicate successful completion
-echo "Job completed successfully" >> "$OUTDIR/job_status.txt"
-echo "All .zc.vcf files moved to $VCF_DIR" >> "$OUTDIR/job_status.txt"
