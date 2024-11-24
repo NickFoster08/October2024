@@ -18,7 +18,7 @@ OUTDIR="/scratch/nf26742/BovMor1/fastqs/VSNP_Output_1"
 REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
 
 # Create the output and VCF directories if they don't exist
-mkdir -p "$OUTDIR" "$VCF_DIR"
+mkdir -p "$OUTDIR"
 
 # Load vsnp module
 module load vsnp3/3.26
