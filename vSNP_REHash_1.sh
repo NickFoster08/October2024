@@ -27,7 +27,7 @@ module load vsnp3/3.26
 cd "/scratch/nf26742/BovMor1/fastqs/fastqs" || { echo "Error: Directory not found"; exit 1; }
 
 # Loop over each pair of R1 and R2 files
-for r1_file in *_R1.fastq.gz; do
+for r1_file in *_R1_001.fastq.gz; do
     # Generate the corresponding R2 file by replacing _R1 with _R2
     r2_file="${r1_file/_R1/_R2}"
     
