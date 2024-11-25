@@ -26,7 +26,7 @@ REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF21
 module load vsnp3/3.26
 
 # Navigate to the correct directory
-cd /scratch/nf26742/BovMor1/fastqs/VSNP_Step2_Input
+cd /scratch/nf26742/BovMor1/fastqs/VSNP_Output_1/zc.vcf_sorted
 
 # Start step 2 analysis
 vsnp3_step2.py -a -t $REFERENCE 
