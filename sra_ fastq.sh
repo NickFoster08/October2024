@@ -1,4 +1,15 @@
 #!/bin/bash
+#SBATCH --job-name=SRA-FASTQ_Spain        # Job name
+#SBATCH --partition=batch                      # Partition (queue) name
+#SBATCH --ntasks=1                             # Run on a single CPU
+#SBATCH --cpus-per-task=2                      # Number of cores per task
+#SBATCH --mem=10gb                             # Job memory request
+#SBATCH --time=00-01:00:00                     # Time limit hrs:min:sec
+#SBATCH --output=/scratch/nf26742/scratch/log.%j.out  # Standard output log
+#SBATCH --error=/scratch/nf26742/scratch/log.%j.err   # Standard error log
+
+#SBATCH --mail-type=END,FAIL                   # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=nf26742@uga.edu            # Where to send mail
 
 # Load the SRA Toolkit module
 module load SRA-Toolkit/3.0.3-gompi-2022a
