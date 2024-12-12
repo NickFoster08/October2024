@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH --job-name=download_sra_Accessions      # Job name
-#SBATCH --partition=batch           # Partition (queue) name
-#SBATCH --ntasks=1                  # Run on a single CPU
-#SBATCH --cpus-per-task=2           # Number of cores per task
-#SBATCH --mem=10gb                  # Memory allocation
-#SBATCH --time=24:00:00             # Time limit
-#SBATCH --output=download_sra.log   # Standard output log
-#SBATCH --error=download_sra.err    # Standard error log
+#SBATCH --job-name=SRA_Downlad_Spain        # Job name
+#SBATCH --partition=batch                      # Partition (queue) name
+#SBATCH --ntasks=1                             # Run on a single CPU
+#SBATCH --cpus-per-task=2                      # Number of cores per task
+#SBATCH --mem=10gb                             # Job memory request
+#SBATCH --time=00-01:00:00                     # Time limit hrs:min:sec
+#SBATCH --output=/scratch/nf26742/scratch/log.%j.out  # Standard output log
+#SBATCH --error=/scratch/nf26742/scratch/log.%j.err   # Standard error log
 
 # Load the SRA Toolkit
 module load SRA-Toolkit/3.0.3-gompi-2022a
