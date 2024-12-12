@@ -12,7 +12,7 @@
 module load SRA-Toolkit/3.0.3-gompi-2022a
 
 # Define directories
-ACCESSIONS="/home/nf26742/All_Seqs/Spain/AF_2015/biosample_result_2.txt"  # File containing SRR numbers
+ACCESSIONS="/home/nf26742/All_Seqs/Spain/AF_2015/biosample_list_2.txt"  # File containing SRR numbers
 OUTPUT_DIR="/home/nf26742/All_Seqs/Spain/AF_2015"  # Directory for downloaded files
 mkdir -p $OUTPUT_DIR
 
