@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=spain downlaod       # Job name
+#SBATCH --job-name=spain_downlaod       # Job name
 #SBATCH --partition=batch                       # Partition (queue) name
 #SBATCH --ntasks=1                              # Run on a single CPU
 #SBATCH --cpus-per-task=2                       # Number of cores per task
