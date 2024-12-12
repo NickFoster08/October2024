@@ -13,7 +13,7 @@
 
 OUTDIR="/home/nf26742/All_Seqs/Spain/AF_2015"
 
-module load sra-tools  # Ensure sra-tools is available on your system
+module load SRA-Toolkit/3.0.3-gompi-2022a  
 
 # List of accessions
 accessions=(
