@@ -8,6 +8,9 @@
 #SBATCH --output=/scratch/nf26742/scratch/log.%j.out  # Standard output log
 #SBATCH --error=/scratch/nf26742/scratch/log.%j.err   # Standard error log
 
+#SBATCH --mail-type=END,FAIL                    # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=nf26742@uga.edu             # Where to send mail
+
 # Load the SRA Toolkit
 module load SRA-Toolkit/3.0.3-gompi-2022a
 
