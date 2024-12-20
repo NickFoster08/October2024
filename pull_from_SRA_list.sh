@@ -37,5 +37,5 @@ for accession in "${accessions[@]}"; do
     # Download the SRA file
     prefetch $accession
     # Convert to FASTQ format
-    fasterq-dump $accession -O /$OUTDIR
+    fasterq-dump $accession -O $OUTDIR
 done
