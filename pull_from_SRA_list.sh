@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=portugal_downlaod       # Job name
+#SBATCH --job-name=portugal_downlaod_AF_2015      # Job name
 #SBATCH --partition=batch               # Partition (queue) name
 #SBATCH --ntasks=1                      # Run on a single CPU
 #SBATCH --cpus-per-task=8               # Number of cores per task
@@ -20,7 +20,16 @@ mkdir -p $OUTDIR
 
 # List of accessions
 accessions=(
-SAMN33843519
+SAMN33843536
+SAMN33843537
+SAMN33843539
+SAMN33843555
+SAMN33843557
+SAMN33843570
+SAMN33843572
+SAMN33849789
+SAMN33871440
+SAMN33871459
 )
 
 # Loop to download and convert SRA files
