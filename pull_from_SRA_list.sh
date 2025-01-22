@@ -56,10 +56,17 @@ SAMN17004144
 SAMN17004143
 SAMN17004141
 )
+
 # Loop to download and convert SRA files
 for accession in "${accessions[@]}"; do
-    # Download the SRA file
-    prefetch "$accession"
-    # Convert to FASTQ format
-    fasterq-dump "$accession" -O "$OUTDIR"
+    # Download the SRA file to the specified directory
+    prefetch "$accession" --output-directory "$OUTDIR"
+    
+    # Check if prefetch was successful
+    if [[ -f "$OUTDIR/$accession/$accession.sra" ]]; then
+        # Convert to FASTQ format
+        fasterq-dump "$OUTDIR/$accession/$accession.sra" -O "$OUTDIR"
+    else
+        echo "Error: Failed to download $accession"
+    fi
 done
