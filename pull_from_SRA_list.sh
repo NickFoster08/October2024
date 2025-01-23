@@ -59,14 +59,27 @@ SAMN17004141
 
 # Loop to download and convert SRA files
 for accession in "${accessions[@]}"; do
+    echo "Processing $accession..."
     # Download the SRA file to the specified directory
     prefetch "$accession" --output-directory "$OUTDIR"
-    
+
     # Check if prefetch was successful
-    if [[ -f "$OUTDIR/$accession/$accession.sra" ]]; then
+    SRA_PATH="$OUTDIR/$accession/$accession.sra"
+    if [[ -f "$SRA_PATH" ]]; then
         # Convert to FASTQ format
-        fasterq-dump "$OUTDIR/$accession/$accession.sra" -O "$OUTDIR"
+        fasterq-dump "$SRA_PATH" --outdir "$OUTDIR" --split-files --threads 8
+        
+        # Check if conversion was successful
+        if [[ $? -ne 0 ]]; then
+            echo "Error: Failed to convert $accession to FASTQ format"
+        else
+            echo "$accession converted to FASTQ successfully."
+            # Remove .sra file after successful conversion
+            rm -f "$SRA_PATH"
+        fi
     else
         echo "Error: Failed to download $accession"
     fi
 done
+
+echo "Processing completed."
