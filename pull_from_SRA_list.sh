@@ -1,24 +1,24 @@
 #!/bin/bash
-#SBATCH --job-name=ptgal_download       # Job name
-#SBATCH --partition=batch              # Partition (queue) name
-#SBATCH --ntasks=1                     # Run on a single CPU
-#SBATCH --cpus-per-task=8              # Number of cores per task
-#SBATCH --mem=80gb                     # Job memory request
-#SBATCH --time=00-12:00:00             # Time limit hrs:min:sec
+#SBATCH --job-name=ptgal_BF2015      # Job name
+#SBATCH --partition=batch                # Partition (queue) name
+#SBATCH --ntasks=1                       # Run on a single CPU
+#SBATCH --cpus-per-task=8                # Number of cores per task
+#SBATCH --mem=80gb                       # Job memory request
+#SBATCH --time=00-12:00:00               # Time limit hrs:min:sec
 #SBATCH --output=/scratch/nf26742/scratch/log.%j.out  # Standard output log
 #SBATCH --error=/scratch/nf26742/scratch/log.%j.err   # Standard error log
 
-#SBATCH --mail-type=END,FAIL           # Mail events (NONE, BEGIN, END, FAIL, ALL)
-#SBATCH --mail-user=nf26742@uga.edu    # Where to send mail
+#SBATCH --mail-type=END,FAIL             # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=nf26742@uga.edu      # Where to send mail
 
 # Specify output directory
 OUTDIR="/home/nf26742/All_Seqs/Portugal/BF_2015"
 
+# Create output directory if it doesn't exist
+mkdir -p "$OUTDIR"
+
 # Load SRA tools
 module load SRA-Toolkit/3.0.3-gompi-2022a
-
-# Ensure output directory exists
-mkdir -p "$OUTDIR"
 
 # List of accessions
 accessions=(
@@ -59,27 +59,19 @@ SAMN17004141
 
 # Loop to download and convert SRA files
 for accession in "${accessions[@]}"; do
-    echo "Processing $accession..."
-    # Download the SRA file to the specified directory
-    prefetch "$accession" --output-directory "$OUTDIR"
-
-    # Check if prefetch was successful
-    SRA_PATH="$OUTDIR/$accession/$accession.sra"
-    if [[ -f "$SRA_PATH" ]]; then
+    echo "Processing accession: $accession"
+    # Download the SRA file
+    prefetch "$accession"
+    if [[ $? -eq 0 ]]; then
+        echo "Successfully downloaded $accession"
         # Convert to FASTQ format
-        fasterq-dump "$SRA_PATH" --outdir "$OUTDIR" --split-files --threads 8
-        
-        # Check if conversion was successful
-        if [[ $? -ne 0 ]]; then
-            echo "Error: Failed to convert $accession to FASTQ format"
+        fasterq-dump "$accession" -O "$OUTDIR" --threads 8
+        if [[ $? -eq 0 ]]; then
+            echo "Successfully converted $accession to FASTQ"
         else
-            echo "$accession converted to FASTQ successfully."
-            # Remove .sra file after successful conversion
-            rm -f "$SRA_PATH"
+            echo "Error converting $accession to FASTQ"
         fi
     else
-        echo "Error: Failed to download $accession"
+        echo "Error downloading $accession"
     fi
 done
-
-echo "Processing completed."
