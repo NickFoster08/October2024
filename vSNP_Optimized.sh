@@ -33,6 +33,13 @@ find /home/nf26742/All_Seqs -type f -name "*_1.fastq" | while read -r R1; do
     if [ -f "$R2" ]; then  # Ensure R2 exists
         echo "Processing: $R1 and $R2"
 
+        # Ensure alignment directory doesn't already exist to prevent shutil.move error
+        ALIGNMENT_DIR="$OUTDIR/alignment_NC_002945v4"
+        if [ -d "$ALIGNMENT_DIR" ]; then
+            echo "Removing existing alignment directory: $ALIGNMENT_DIR"
+            rm -rf "$ALIGNMENT_DIR"
+        fi
+
         # Ensure unmapped_reads directory doesn't already exist to prevent shutil.move error
         UNMAPPED_DIR="$OUTDIR/alignment_NC_002945v4/unmapped_reads"
         if [ -d "$UNMAPPED_DIR" ]; then
