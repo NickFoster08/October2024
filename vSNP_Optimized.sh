@@ -24,13 +24,14 @@ REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF21
 module load vsnp3/3.26
 
 # Navigate to the correct directory
-cd /home/nf26742/All_Seqs
+cd /home/nf26742/All_Seqs || { echo "Directory /home/nf26742/All_Seqs not found!" >&2; exit 1; }
 
 # Find all R1 and R2 files recursively and process them
 find /home/nf26742/All_Seqs -type f -name "*_1.fastq" | while read -r R1; do
     R2="${R1%_1.fastq}_2.fastq"  # Construct the corresponding R2 filename
 
-    if [ -f "$R2" ]; then  # Ensure R2 exists
+    # Ensure both R1 and R2 exist and are not empty
+    if [[ -s "$R1" && -s "$R2" ]]; then
         echo "Processing: $R1 and $R2"
 
         # Ensure alignment directory doesn't already exist to prevent shutil.move error
@@ -47,9 +48,10 @@ find /home/nf26742/All_Seqs -type f -name "*_1.fastq" | while read -r R1; do
             rm -rf "$UNMAPPED_DIR"
         fi
 
-        # Run vSNP
-        vsnp3_step1.py -r1 "$R1" -r2 "$R2" -t "$REFERENCE" -o "$OUTDIR"
+        # Run vSNP and log errors if any
+        vsnp3_step1.py -r1 "$R1" -r2 "$R2" -t "$REFERENCE" -o "$OUTDIR" 2>> "$OUTDIR/vsnp_errors.log"
     else
-        echo "Warning: Matching R2 file for $R1 not found!" >&2
+        echo "Warning: $R1 or $R2 is missing or empty! Skipping..." >&2
     fi
+
 done
