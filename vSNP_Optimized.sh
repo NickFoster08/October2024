@@ -48,8 +48,15 @@ find /home/nf26742/All_Seqs -type f -name "*_1.fastq" | while read -r R1; do
             rm -rf "$UNMAPPED_DIR"
         fi
 
-        # Run vSNP and log errors if any
+        # Run vSNP and check if temp_fastq_seqkit_stats.txt is empty
         vsnp3_step1.py -r1 "$R1" -r2 "$R2" -t "$REFERENCE" -o "$OUTDIR" 2>> "$OUTDIR/vsnp_errors.log"
+
+        # Verify that temp_fastq_seqkit_stats.txt is not empty
+        STATS_FILE="$OUTDIR/temp_fastq_seqkit_stats.txt"
+        if [[ ! -s "$STATS_FILE" ]]; then
+            echo "Warning: $STATS_FILE is empty. Skipping sample." >&2
+            continue
+        fi
     else
         echo "Warning: $R1 or $R2 is missing or empty! Skipping..." >&2
     fi
