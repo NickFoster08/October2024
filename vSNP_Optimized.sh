@@ -27,8 +27,22 @@ module load vsnp3/3.26
 cd /home/nf26742/All_Seqs || { echo "Directory /home/nf26742/All_Seqs not found!" >&2; exit 1; }
 
 # Find all R1 and R2 files recursively and process them
-find /home/nf26742/All_Seqs -type f -name "*_1.fastq" | while read -r R1; do
+find /home/nf26742/All_Seqs -mindepth 2 -type f -name "*_1.fastq" | while read -r R1; do
+    SAMPLE_ID=$(basename "$R1" | cut -d'_' -f1)
     R2="${R1%_1.fastq}_2.fastq"  # Construct the corresponding R2 filename
+
+    # Run seqkit stats to determine read quality
+    READ_COUNT=$(seqkit stats "$R1" | awk 'NR==2 {print $4}')
+    AVG_LENGTH=$(seqkit stats "$R1" | awk 'NR==2 {print $6}')
+
+    # Define thresholds for exclusion
+    MIN_READ_COUNT=400000
+    MIN_AVG_LENGTH=100
+
+    if [[ "$READ_COUNT" -lt "$MIN_READ_COUNT" || "$AVG_LENGTH" -lt "$MIN_AVG_LENGTH" ]]; then
+        echo "Skipping low-quality sample: $SAMPLE_ID (Reads: $READ_COUNT, Avg Length: $AVG_LENGTH)"
+        continue
+    fi
 
     # Ensure both R1 and R2 exist and are not empty
     if [[ -s "$R1" && -s "$R2" ]]; then
