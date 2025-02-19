@@ -12,7 +12,7 @@
 #SBATCH --mail-user=nf26742@uga.edu        # Where to send mail
 
 # Set output directory for step 1 results
-OUTDIR="/scratch/nf26742/AllSeqsAttempt2/job_${SLURM_JOB_ID}"
+OUTDIR="/scratch/nf26742/AllSeqsAttempt3/job_${SLURM_JOB_ID}"
 mkdir -p "$OUTDIR"
 
 # Clean up output directory to avoid conflicts
@@ -20,7 +20,6 @@ if [ -d "$OUTDIR" ]; then
     echo "Cleaning up pre-existing output directory: $OUTDIR"
     rm -rf "$OUTDIR"
 fi
-mkdir -p "$OUTDIR"
 
 # Set reference genome variable
 REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
@@ -40,6 +39,13 @@ for r1_file in *_1.fastq; do
     if [ -f "$r2_file" ]; then
         echo "Processing: $r1_file and $r2_file"
         
+ # Ensure alignment directory doesn't already exist to prevent shutil.move error
+        ALIGNMENT_DIR="$OUTDIR/alignment_NC_002945v4"
+        if [ -d "$ALIGNMENT_DIR" ]; then
+            echo "Removing existing alignment directory: $ALIGNMENT_DIR"
+            rm -rf "$ALIGNMENT_DIR"
+        fi
+
         # Run vsnp3_step1.py for each pair of R1 and R2 files
         vsnp3_step1.py \
             -r1 "$r1_file" \
