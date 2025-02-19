@@ -34,7 +34,7 @@ cd "/home/nf26742/All_Seqs/Algeria/AF_2015" || { echo "Error: Directory not foun
 # Loop over each pair of R1 and R2 files
 for r1_file in *_1.fastq; do
     # Generate the corresponding R2 file by replacing _R1 with _R2
-    r2_file="${r1_file/_R1/_R2}"
+    r2_file="${r1_file/_1.fastq/_2.fastq}"
     
     # Check if R2 file exists
     if [ -f "$r2_file" ]; then
