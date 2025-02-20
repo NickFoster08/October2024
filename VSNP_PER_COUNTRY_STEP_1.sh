@@ -49,7 +49,7 @@ for r1_file in *_1.fastq; do
         mkdir -p "$ALIGNMENT_DIR"
 
         # Run vsnp3_step1.py for each pair of R1 and R2 files
-        vsnp3_step1.py -r1 "$r1_file" -r2 "$r2_file" -t "$REFERENCE" -o "$OUTDIR" 2>> "$OUTDIR/vsnp_errors.log"
+        vsnp3_step1.py -r1 "$SEQ_DIR/$r1_file" -r2 "$SEQ_DIR/$r2_file" -t "$REFERENCE" -o "$OUTDIR"
         
         # Check if vSNP output is generated
         if [ ! -s "$OUTDIR/alignment_NC_002945v4/${r1_file%%_1.fastq}_zc.vcf" ]; then
