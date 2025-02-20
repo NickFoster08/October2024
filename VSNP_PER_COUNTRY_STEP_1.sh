@@ -16,11 +16,7 @@ set -euo pipefail  # Enable strict error handling
 # Define output directory for step 1 results
 OUTDIR="/scratch/nf26742/AllSeqsAttempt3/job_${SLURM_JOB_ID}"
 
-# Remove the directory first to avoid conflicts, then recreate it
-if [ -d "$OUTDIR" ]; then
-    echo "Removing pre-existing output directory: $OUTDIR"
-    rm -rf "$OUTDIR"
-fi
+# Create output directory if it doesn't exist
 mkdir -p "$OUTDIR"
 
 # Set reference genome variable
@@ -46,12 +42,9 @@ for r1_file in *_1.fastq; do
     if [[ -f "$r2_file" && -s "$r1_file" && -s "$r2_file" ]]; then
         echo "Processing: $r1_file and $r2_file"
 
-        # Ensure alignment directory doesn't already exist to prevent shutil.move error
+        # Ensure alignment directory exists
         ALIGNMENT_DIR="$OUTDIR/alignment_NC_002945v4"
-        if [ -d "$ALIGNMENT_DIR" ]; then
-            echo "Removing existing alignment directory: $ALIGNMENT_DIR"
-            rm -rf "$ALIGNMENT_DIR"
-        fi
+        mkdir -p "$ALIGNMENT_DIR"
 
         # Run vsnp3_step1.py for each pair of R1 and R2 files
         vsnp3_step1.py -r1 "$r1_file" -r2 "$r2_file" -t "$REFERENCE" -o "$OUTDIR" 2>> "$OUTDIR/vsnp_errors.log"
