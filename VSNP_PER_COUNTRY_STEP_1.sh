@@ -12,7 +12,6 @@
 #SBATCH --mail-user=nf26742@uga.edu    # Where to send mail
 
 set -x
-
 set -euo pipefail  # Enable strict error handling
 
 # Define output directory for step 1 results
@@ -47,6 +46,13 @@ for r1_file in *_1.fastq; do
         # Ensure alignment directory exists
         ALIGNMENT_DIR="$OUTDIR/alignment_NC_002945v4"
         mkdir -p "$ALIGNMENT_DIR"
+
+        # Remove the unmapped_reads directory if it exists to avoid shutil.move error
+        UNMAPPED_DIR="$ALIGNMENT_DIR/unmapped_reads"
+        if [ -d "$UNMAPPED_DIR" ]; then
+            echo "Removing existing directory: $UNMAPPED_DIR"
+            rm -rf "$UNMAPPED_DIR"
+        fi
 
         # Run vsnp3_step1.py for each pair of R1 and R2 files
         vsnp3_step1.py -r1 "$SEQ_DIR/$r1_file" -r2 "$SEQ_DIR/$r2_file" -t "$REFERENCE" -o "$OUTDIR"
