@@ -27,12 +27,7 @@ REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF21
 module load vsnp3/3.26 || { echo "Error: Failed to load vsnp3 module"; exit 1; }
 
 # Navigate to the correct directory
-SEQ_DIR="/home/nf26742/All_Seqs/Algeria/AF_2015"
-if [ ! -d "$SEQ_DIR" ]; then
-    echo "Error: Directory $SEQ_DIR not found!"
-    exit 1
-fi
-cd "$SEQ_DIR"
+cd "/home/nf26742/All_Seqs/Algeria/AF_2015" || { echo "Error: Directory not found"; exit 1; } 
 
 # Loop over each pair of R1 and R2 files
 for r1_file in *_1.fastq; do
@@ -53,9 +48,12 @@ for r1_file in *_1.fastq; do
             echo "Removing existing directory: $UNMAPPED_DIR"
             rm -rf "$UNMAPPED_DIR"
         fi
-
         # Run vsnp3_step1.py for each pair of R1 and R2 files
-        vsnp3_step1.py -r1 "$SEQ_DIR/$r1_file" -r2 "$SEQ_DIR/$r2_file" -t "$REFERENCE" -o "$OUTDIR"
+        vsnp3_step1.py \
+        -r1 "$r1_file" \
+        -r2 "$r2_file" \
+        -t "$REFERENCE" \
+        -o "$OUTDIR"
         
         # Check if vSNP output is generated
         if [ ! -s "$OUTDIR/alignment_NC_002945v4/${r1_file%%_1.fastq}_zc.vcf" ]; then
