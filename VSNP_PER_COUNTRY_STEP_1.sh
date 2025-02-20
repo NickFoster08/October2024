@@ -42,11 +42,18 @@ for r1_file in *_1.fastq; do
         ALIGNMENT_DIR="$OUTDIR/alignment_NC_002945v4"
         mkdir -p "$ALIGNMENT_DIR"
 
-        # Remove the reference genome inside the alignment directory to avoid conflicts
+        # Remove the reference genome and index file inside the alignment directory to avoid conflicts
         REF_COPY="$ALIGNMENT_DIR/NC_002945v4.fasta"
+        REF_INDEX="$ALIGNMENT_DIR/NC_002945v4.fasta.fai"
+
         if [ -f "$REF_COPY" ]; then
             echo "Removing existing reference genome: $REF_COPY"
             rm -f "$REF_COPY"
+        fi
+
+        if [ -f "$REF_INDEX" ]; then
+            echo "Removing existing reference genome index: $REF_INDEX"
+            rm -f "$REF_INDEX"
         fi
 
         # Remove the unmapped_reads directory if it exists to avoid shutil.move error
