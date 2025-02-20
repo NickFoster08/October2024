@@ -42,12 +42,20 @@ for r1_file in *_1.fastq; do
         ALIGNMENT_DIR="$OUTDIR/alignment_NC_002945v4"
         mkdir -p "$ALIGNMENT_DIR"
 
+        # Remove the reference genome inside the alignment directory to avoid conflicts
+        REF_COPY="$ALIGNMENT_DIR/NC_002945v4.fasta"
+        if [ -f "$REF_COPY" ]; then
+            echo "Removing existing reference genome: $REF_COPY"
+            rm -f "$REF_COPY"
+        fi
+
         # Remove the unmapped_reads directory if it exists to avoid shutil.move error
         UNMAPPED_DIR="$ALIGNMENT_DIR/unmapped_reads"
         if [ -d "$UNMAPPED_DIR" ]; then
             echo "Removing existing directory: $UNMAPPED_DIR"
             rm -rf "$UNMAPPED_DIR"
         fi
+
         # Run vsnp3_step1.py for each pair of R1 and R2 files
         vsnp3_step1.py \
         -r1 "$r1_file" \
@@ -57,9 +65,9 @@ for r1_file in *_1.fastq; do
         
         # Check if vSNP output is generated
         if [ ! -s "$OUTDIR/alignment_NC_002945v4/${r1_file%%_1.fastq}_zc.vcf" ]; then
-            echo "Warning: No vSNP output for $r1_file and $r2_file"
+            echo "Warning: No vSNP output for $r1_file and $r2_file" | tee -a "$OUTDIR/vsnp_errors.log"
         fi
     else
-        echo "Warning: Missing or empty files for $r1_file, skipping..."
+        echo "Warning: Missing or empty files for $r1_file, skipping..." | tee -a "$OUTDIR/vsnp_errors.log"
     fi
 done
