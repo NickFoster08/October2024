@@ -22,7 +22,7 @@ OUTDIR="/scratch/nf26742/AllSeqsAttempt3/job_${SLURM_JOB_ID}"
 mkdir -p "$OUTDIR"
 
 # Set reference genome variable
-REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122/NC_002945v4.fasta"
+REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF2122"
 
 # Load vsnp module
 module load vsnp3/3.26 || { echo "Error: Failed to load vsnp3 module"; exit 1; }
