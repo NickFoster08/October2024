@@ -11,6 +11,8 @@
 #SBATCH --mail-type=END,FAIL           # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=nf26742@uga.edu    # Where to send mail
 
+set -x
+
 set -euo pipefail  # Enable strict error handling
 
 # Define output directory for step 1 results
