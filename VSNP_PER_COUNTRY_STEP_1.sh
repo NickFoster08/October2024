@@ -27,7 +27,7 @@ REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF21
 module load vsnp3/3.26 || { echo "Error: Failed to load vsnp3 module"; exit 1; }
 
 # Navigate to the correct directory
-SEQ_DIR="/home/nf26742/All_Seqs/Morocco/2015-16"
+SEQ_DIR="/home/nf26742/All_Seqs/Morocco/2015-16/fastqs"
 cd "$SEQ_DIR" || { echo "Error: Directory not found"; exit 1; } 
 
 # Loop over each pair of R1 and R2 files
