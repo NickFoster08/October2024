@@ -1,15 +1,15 @@
 #!/bin/bash
 #SBATCH --job-name=VSNP_Spain_AF2015        # Job name
-#SBATCH --partition=batch              # Partition (queue) name
-#SBATCH --ntasks=1                     # Run on a single CPU
-#SBATCH --cpus-per-task=8              # Number of cores per task
-#SBATCH --mem=40gb                     # Job memory request
-#SBATCH --time=02-00:00:00             # Time limit hrs:min:sec
+#SBATCH --partition=batch                   # Partition (queue) name
+#SBATCH --ntasks=1                          # Run on a single CPU
+#SBATCH --cpus-per-task=8                   # Number of cores per task
+#SBATCH --mem=40gb                          # Job memory request
+#SBATCH --time=02-00:00:00                  # Time limit hrs:min:sec
 #SBATCH --output=/scratch/nf26742/scratch/log.%j.out  # Standard output log
 #SBATCH --error=/scratch/nf26742/scratch/log.%j.err   # Standard error log
 
-#SBATCH --mail-type=END,FAIL           # Mail events (NONE, BEGIN, END, FAIL, ALL)
-#SBATCH --mail-user=nf26742@uga.edu    # Where to send mail
+#SBATCH --mail-type=END,FAIL                # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=nf26742@uga.edu         # Where to send mail
 
 set -x
 set -euo pipefail  # Enable strict error handling
@@ -27,12 +27,13 @@ REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF21
 module load vsnp3/3.26 || { echo "Error: Failed to load vsnp3 module"; exit 1; }
 
 # Navigate to the correct directory
-cd "/home/nf26742/All_Seqs/Spain/AF_2015" || { echo "Error: Directory not found"; exit 1; } 
+SEQ_DIR="/home/nf26742/All_Seqs/Morocco/2015-16"
+cd "$SEQ_DIR" || { echo "Error: Directory not found"; exit 1; } 
 
 # Loop over each pair of R1 and R2 files
-for r1_file in *_1.fastq; do
+for r1_file in *_L001_R1_001.fastq.gz; do
     # Generate the corresponding R2 file
-    r2_file="${r1_file/_1.fastq/_2.fastq}"
+    r2_file="${r1_file/_R1_/_R2_}"
     
     # Check if R2 file exists
     if [[ -f "$r2_file" && -s "$r1_file" && -s "$r2_file" ]]; then
@@ -71,10 +72,10 @@ for r1_file in *_1.fastq; do
         -o "$OUTDIR"
         
         # Check if vSNP output is generated
-        if [ ! -s "$OUTDIR/alignment_NC_002945v4/${r1_file%%_1.fastq}_zc.vcf" ]; then
+        if [ ! -s "$OUTDIR/alignment_NC_002945v4/${r1_file%%_L001_R1_001.fastq.gz}_zc.vcf" ]; then
             echo "Warning: No vSNP output for $r1_file and $r2_file" | tee -a "$OUTDIR/vsnp_errors.log"
         fi
     else
         echo "Warning: Missing or empty files for $r1_file, skipping..." | tee -a "$OUTDIR/vsnp_errors.log"
     fi
-done
+done  
