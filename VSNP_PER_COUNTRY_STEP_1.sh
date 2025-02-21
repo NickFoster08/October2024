@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=VSNP_Spain_AF2015        # Job name
+#SBATCH --job-name=VSNP_Port_BF2015        # Job name
 #SBATCH --partition=batch                   # Partition (queue) name
 #SBATCH --ntasks=1                          # Run on a single CPU
 #SBATCH --cpus-per-task=8                   # Number of cores per task
@@ -27,13 +27,13 @@ REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF21
 module load vsnp3/3.26 || { echo "Error: Failed to load vsnp3 module"; exit 1; }
 
 # Navigate to the correct directory
-SEQ_DIR="/home/nf26742/All_Seqs/Morocco/2015-16/fastqs"
+SEQ_DIR="/home/nf26742/All_Seqs/Portugal/BF_2015"
 cd "$SEQ_DIR" || { echo "Error: Directory not found"; exit 1; } 
 
 # Loop over each pair of R1 and R2 files
-for r1_file in *_L001_R1_001.fastq.gz; do
+for r1_file in *_1.fastq; do
     # Generate the corresponding R2 file
-    r2_file="${r1_file/_R1_/_R2_}"
+    r2_file="${r1_file/_1.fastq/_2.fastq}"
     
     # Check if R2 file exists
     if [[ -f "$r2_file" && -s "$r1_file" && -s "$r2_file" ]]; then
