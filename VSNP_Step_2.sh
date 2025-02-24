@@ -12,7 +12,7 @@
 #SBATCH --mail-user=nf26742@uga.edu           # Where to send mail
 
 # Set output directory variable
-OUTDIR=/scratch/nf26742/BovMor1/fastqs/VSNP_Step2_Output
+OUTDIR=/scratch/nf26742/ALLSeqsStep2
 
 # Create the output directory if it doesn't exist
 if [ ! -d $OUTDIR ]; then
@@ -26,7 +26,7 @@ REFERENCE="/home/nf26742/vsnp3_test_dataset/vsnp_dependencies/Mycobacterium_AF21
 module load vsnp3/3.26
 
 # Navigate to the correct directory
-cd /scratch/nf26742/BovMor1/fastqs/VSNP_Output_1/zc.vcf_sorted
+cd /scratch/nf26742/VCF_Per_Country
 
 # Start step 2 analysis
 vsnp3_step2.py -a -t $REFERENCE 
