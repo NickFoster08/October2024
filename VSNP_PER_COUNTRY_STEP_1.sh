@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=VSNP_Algeria       # Job name
+#SBATCH --job-name=VSNP_Spain_BF_2015       # Job name
 #SBATCH --partition=batch              # Partition (queue) name
 #SBATCH --ntasks=1                     # Run on a single CPU
 #SBATCH --cpus-per-task=8              # Number of cores per task
